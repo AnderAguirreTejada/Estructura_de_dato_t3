@@ -1,0 +1,40 @@
+D:\Prog\Proyectos\TowerDefenseWPF\bin\Debug\net8.0-windows\TowerDefenseWPF.exe
+D:\Prog\Proyectos\TowerDefenseWPF\bin\Debug\net8.0-windows\TowerDefenseWPF.deps.json
+D:\Prog\Proyectos\TowerDefenseWPF\bin\Debug\net8.0-windows\TowerDefenseWPF.runtimeconfig.json
+D:\Prog\Proyectos\TowerDefenseWPF\bin\Debug\net8.0-windows\TowerDefenseWPF.dll
+D:\Prog\Proyectos\TowerDefenseWPF\bin\Debug\net8.0-windows\TowerDefenseWPF.pdb
+D:\Prog\Proyectos\TowerDefenseWPF\obj\Debug\net8.0-windows\MainWindow.g.cs
+D:\Prog\Proyectos\TowerDefenseWPF\obj\Debug\net8.0-windows\App.g.cs
+D:\Prog\Proyectos\TowerDefenseWPF\obj\Debug\net8.0-windows\TowerDefenseWPF_MarkupCompile.cache
+D:\Prog\Proyectos\TowerDefenseWPF\obj\Debug\net8.0-windows\TowerDefenseWPF_MarkupCompile.lref
+D:\Prog\Proyectos\TowerDefenseWPF\obj\Debug\net8.0-windows\MainWindow.baml
+D:\Prog\Proyectos\TowerDefenseWPF\obj\Debug\net8.0-windows\TowerDefenseWPF.g.resources
+D:\Prog\Proyectos\TowerDefenseWPF\obj\Debug\net8.0-windows\TowerDefenseWPF.GeneratedMSBuildEditorConfig.editorconfig
+D:\Prog\Proyectos\TowerDefenseWPF\obj\Debug\net8.0-windows\TowerDefenseWPF.AssemblyInfoInputs.cache
+D:\Prog\Proyectos\TowerDefenseWPF\obj\Debug\net8.0-windows\TowerDefenseWPF.AssemblyInfo.cs
+D:\Prog\Proyectos\TowerDefenseWPF\obj\Debug\net8.0-windows\TowerDefenseWPF.csproj.CoreCompileInputs.cache
+D:\Prog\Proyectos\TowerDefenseWPF\obj\Debug\net8.0-windows\TowerDefenseWPF.dll
+D:\Prog\Proyectos\TowerDefenseWPF\obj\Debug\net8.0-windows\refint\TowerDefenseWPF.dll
+D:\Prog\Proyectos\TowerDefenseWPF\obj\Debug\net8.0-windows\TowerDefenseWPF.pdb
+D:\Prog\Proyectos\TowerDefenseWPF\obj\Debug\net8.0-windows\TowerDefenseWPF.genruntimeconfig.cache
+D:\Prog\Proyectos\TowerDefenseWPF\obj\Debug\net8.0-windows\ref\TowerDefenseWPF.dll
+C:\Users\ander\OneDrive\Documentos\Idea de jueguito\bin\Debug\net8.0-windows\TowerDefenseWPF.exe
+C:\Users\ander\OneDrive\Documentos\Idea de jueguito\bin\Debug\net8.0-windows\TowerDefenseWPF.deps.json
+C:\Users\ander\OneDrive\Documentos\Idea de jueguito\bin\Debug\net8.0-windows\TowerDefenseWPF.runtimeconfig.json
+C:\Users\ander\OneDrive\Documentos\Idea de jueguito\bin\Debug\net8.0-windows\TowerDefenseWPF.dll
+C:\Users\ander\OneDrive\Documentos\Idea de jueguito\bin\Debug\net8.0-windows\TowerDefenseWPF.pdb
+C:\Users\ander\OneDrive\Documentos\Idea de jueguito\obj\Debug\net8.0-windows\MainWindow.g.cs
+C:\Users\ander\OneDrive\Documentos\Idea de jueguito\obj\Debug\net8.0-windows\App.g.cs
+C:\Users\ander\OneDrive\Documentos\Idea de jueguito\obj\Debug\net8.0-windows\TowerDefenseWPF_MarkupCompile.cache
+C:\Users\ander\OneDrive\Documentos\Idea de jueguito\obj\Debug\net8.0-windows\TowerDefenseWPF_MarkupCompile.lref
+C:\Users\ander\OneDrive\Documentos\Idea de jueguito\obj\Debug\net8.0-windows\MainWindow.baml
+C:\Users\ander\OneDrive\Documentos\Idea de jueguito\obj\Debug\net8.0-windows\TowerDefenseWPF.g.resources
+C:\Users\ander\OneDrive\Documentos\Idea de jueguito\obj\Debug\net8.0-windows\TowerDefenseWPF.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ander\OneDrive\Documentos\Idea de jueguito\obj\Debug\net8.0-windows\TowerDefenseWPF.AssemblyInfoInputs.cache
+C:\Users\ander\OneDrive\Documentos\Idea de jueguito\obj\Debug\net8.0-windows\TowerDefenseWPF.AssemblyInfo.cs
+C:\Users\ander\OneDrive\Documentos\Idea de jueguito\obj\Debug\net8.0-windows\TowerDefenseWPF.csproj.CoreCompileInputs.cache
+C:\Users\ander\OneDrive\Documentos\Idea de jueguito\obj\Debug\net8.0-windows\TowerDefenseWPF.dll
+C:\Users\ander\OneDrive\Documentos\Idea de jueguito\obj\Debug\net8.0-windows\refint\TowerDefenseWPF.dll
+C:\Users\ander\OneDrive\Documentos\Idea de jueguito\obj\Debug\net8.0-windows\TowerDefenseWPF.pdb
+C:\Users\ander\OneDrive\Documentos\Idea de jueguito\obj\Debug\net8.0-windows\TowerDefenseWPF.genruntimeconfig.cache
+C:\Users\ander\OneDrive\Documentos\Idea de jueguito\obj\Debug\net8.0-windows\ref\TowerDefenseWPF.dll
