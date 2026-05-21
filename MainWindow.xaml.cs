@@ -5,6 +5,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using TowerDefenseWPF.EstructurasDeDatos;
 using TowerDefenseWPF.GameLogic;
 using TowerDefenseWPF.Models;
 
@@ -14,13 +15,10 @@ namespace TowerDefenseWPF;
 /// Lógica principal del juego (code-behind).
 ///
 /// Estructuras de datos usadas (resumen):
-///   - <c>List&lt;Torre&gt; _torres</c>, <c>List&lt;Enemigo&gt; _enemigos</c>,
-///     <c>List&lt;Proyectil&gt; _proyectiles</c>: colecciones dinámicas que
-///     el game loop recorre cada frame.
-///   - <c>Queue&lt;GeneracionEnemigo&gt;</c> en <see cref="GestorOleadas"/>: orden FIFO
-///     de aparición de enemigos.
-///   - <c>Stack&lt;AccionJugador&gt;</c> en <see cref="HistorialAcciones"/>: pila LIFO
-///     para deshacer la última acción del jugador.
+///   - <c>Lista&lt;Torre&gt; _torres</c>, <c>Lista&lt;Enemigo&gt; _enemigos</c>,
+///     <c>Lista&lt;Proyectil&gt; _proyectiles</c>: listas propias basadas en nodos enlazados.
+///   - <c>Cola&lt;GeneracionEnemigo&gt;</c> en <see cref="GestorOleadas"/>: cola FIFO propia.
+///   - <c>Pila&lt;AccionJugador&gt;</c> en <see cref="HistorialAcciones"/>: pila LIFO propia.
 ///   - Árbol n-ario de <see cref="NodoMejora"/> en cada torre: ramas de mejora.
 /// </summary>
 public partial class MainWindow : Window, IContextoJuego
@@ -28,9 +26,9 @@ public partial class MainWindow : Window, IContextoJuego
     private const int OroInicial = 220;
     private const int VidasIniciales = 20;
 
-    private readonly List<Torre> _torres = new();
-    private readonly List<Enemigo> _enemigos = new();
-    private readonly List<Proyectil> _proyectiles = new();
+    private readonly Lista<Torre> _torres = new();
+    private readonly Lista<Enemigo> _enemigos = new();
+    private readonly Lista<Proyectil> _proyectiles = new();
 
     private GestorOleadas _gestorOleadas;
     private readonly HistorialAcciones _historial = new();
@@ -85,7 +83,7 @@ public partial class MainWindow : Window, IContextoJuego
         var proximaGeneracion = _gestorOleadas.Tick(dt);
         if (proximaGeneracion.HasValue) GenerarEnemigo(proximaGeneracion.Value);
 
-        for (int i = _enemigos.Count - 1; i >= 0; i--)
+        for (int i = _enemigos.Cantidad - 1; i >= 0; i--)
         {
             var enemigo = _enemigos[i];
             ActualizarEnemigo(enemigo, dt);
@@ -107,7 +105,7 @@ public partial class MainWindow : Window, IContextoJuego
             torre.EnfriamientoDisparo = 1.0 / torre.VelocidadDisparo;
         }
 
-        for (int i = _proyectiles.Count - 1; i >= 0; i--)
+        for (int i = _proyectiles.Cantidad - 1; i >= 0; i--)
         {
             var p = _proyectiles[i];
             ActualizarProyectil(p, dt);
@@ -163,7 +161,7 @@ public partial class MainWindow : Window, IContextoJuego
         GameCanvas.Children.Add(enemigo.FondoBarraVida);
         GameCanvas.Children.Add(enemigo.BarraVida);
 
-        _enemigos.Add(enemigo);
+        _enemigos.Agregar(enemigo);
         ActualizarPosicionVisualEnemigo(enemigo);
     }
 
@@ -179,7 +177,7 @@ public partial class MainWindow : Window, IContextoJuego
             }
         }
 
-        if (enemigo.SiguientePuntoControlIndex >= DatosMapa.PuntosControl.Count)
+        if (enemigo.SiguientePuntoControlIndex >= DatosMapa.PuntosControl.Cantidad)
         {
             enemigo.LlegoAlFinal = true;
             return;
@@ -224,7 +222,7 @@ public partial class MainWindow : Window, IContextoJuego
         GameCanvas.Children.Remove(enemigo.Cuerpo);
         GameCanvas.Children.Remove(enemigo.FondoBarraVida);
         GameCanvas.Children.Remove(enemigo.BarraVida);
-        _enemigos.Remove(enemigo);
+        _enemigos.Eliminar(enemigo);
     }
 
     private void DañarEnemigo(Enemigo enemigo, double daño)
@@ -257,7 +255,7 @@ public partial class MainWindow : Window, IContextoJuego
             if (dx * dx + dy * dy > torre.Rango * torre.Rango) continue;
 
             double progreso = enemigo.SiguientePuntoControlIndex * 1000;
-            if (enemigo.SiguientePuntoControlIndex > 0 && enemigo.SiguientePuntoControlIndex <= DatosMapa.PuntosControl.Count)
+            if (enemigo.SiguientePuntoControlIndex > 0 && enemigo.SiguientePuntoControlIndex <= DatosMapa.PuntosControl.Cantidad)
             {
                 var pc = DatosMapa.PuntosControl[enemigo.SiguientePuntoControlIndex - 1];
                 double pdx = enemigo.Posicion.X - pc.X;
@@ -311,7 +309,7 @@ public partial class MainWindow : Window, IContextoJuego
         };
         Canvas.SetLeft(cuerpo, p.Posicion.X - radio);
         Canvas.SetTop(cuerpo, p.Posicion.Y - radio);
-        _proyectiles.Add(p);
+        _proyectiles.Agregar(p);
     }
 
     private void ActualizarProyectil(Proyectil p, double dt)
@@ -345,14 +343,14 @@ public partial class MainWindow : Window, IContextoJuego
     {
         if (p.EsExplosivo)
         {
-            var impactados = new List<Enemigo>();
+            var impactados = new Lista<Enemigo>();
             foreach (var enemigo in _enemigos)
             {
                 if (enemigo.EstaMuerto || enemigo.LlegoAlFinal) continue;
                 double dx = enemigo.Posicion.X - p.Posicion.X;
                 double dy = enemigo.Posicion.Y - p.Posicion.Y;
                 if (dx * dx + dy * dy <= p.RadioExplosion * p.RadioExplosion)
-                    impactados.Add(enemigo);
+                    impactados.Agregar(enemigo);
             }
             foreach (var e in impactados) DañarEnemigo(e, p.Daño);
             MostrarAnilloDeImpacto(p.Posicion, p.RadioExplosion);
@@ -376,7 +374,7 @@ public partial class MainWindow : Window, IContextoJuego
     private void EliminarProyectil(Proyectil p)
     {
         GameCanvas.Children.Remove(p.Cuerpo);
-        _proyectiles.Remove(p);
+        _proyectiles.Eliminar(p);
     }
 
     private void MostrarAnilloDeImpacto(Point pos, double radio)
@@ -535,7 +533,7 @@ public partial class MainWindow : Window, IContextoJuego
         GameCanvas.Children.Add(forma);
         torre.Cuerpo = forma;
 
-        _torres.Add(torre);
+        _torres.Agregar(torre);
         _historial.Agregar(new AccionColocarTorre(torre, costo));
 
         CancelarColocacion();
@@ -805,7 +803,7 @@ public partial class MainWindow : Window, IContextoJuego
         accion.Deshacer(this);
         StatusLabel.Text = $"Deshecho: {accion.Descripcion}";
 
-        if (_torreSelecionada != null && _torres.Contains(_torreSelecionada))
+        if (_torreSelecionada != null && _torres.Contiene(_torreSelecionada))
         {
             ActualizarIndicadorRango(_torreSelecionada);
             ActualizarPanelMejoras();
@@ -822,7 +820,7 @@ public partial class MainWindow : Window, IContextoJuego
     public void EliminarTorreSilenciosamente(Torre torre)
     {
         GameCanvas.Children.Remove(torre.Cuerpo);
-        _torres.Remove(torre);
+        _torres.Eliminar(torre);
         if (_torreSelecionada == torre) DeseleccionarTorre();
     }
 
@@ -884,7 +882,7 @@ public partial class MainWindow : Window, IContextoJuego
         GoldLabel.Text = _oro.ToString();
         LivesLabel.Text = _vidas.ToString();
         WaveLabel.Text = $"{Math.Max(0, _gestorOleadas.NúmeroOleadaActual)} / {_gestorOleadas.TotalOleadas}";
-        QueueLabel.Text = _gestorOleadas.ColaActual.Count.ToString();
+        QueueLabel.Text = _gestorOleadas.ColaActual.Cantidad.ToString();
 
         StartWaveButton.IsEnabled = !_gestorOleadas.EsOleadaActiva && _gestorOleadas.HayMásOleadas && !_juegoTerminado;
         StartWaveButton.Content = _gestorOleadas.ÍndiceOleadaActual < 0
@@ -959,7 +957,7 @@ public partial class MainWindow : Window, IContextoJuego
             Fill = new SolidColorBrush(Color.FromRgb(0xE7, 0x4C, 0x3C)),
             Stroke = Brushes.Black, StrokeThickness = 1
         };
-        var ultimo = DatosMapa.PuntosControl[^1];
+        var ultimo = DatosMapa.PuntosControl[DatosMapa.PuntosControl.Cantidad - 1];
         Canvas.SetLeft(fin, ultimo.X - 9);
         Canvas.SetTop(fin, ultimo.Y - 9);
         Panel.SetZIndex(fin, 2);
@@ -970,7 +968,7 @@ public partial class MainWindow : Window, IContextoJuego
 
     private void VerificarCondiciónDeVictoria()
     {
-        if (_gestorOleadas.TodasLasOleadasTerminadas && _enemigos.Count == 0 && !_juegoTerminado)
+        if (_gestorOleadas.TodasLasOleadasTerminadas && _enemigos.Cantidad == 0 && !_juegoTerminado)
             JuegoGanado();
     }
 
@@ -997,9 +995,9 @@ public partial class MainWindow : Window, IContextoJuego
     private void BotónReiniciar_Click(object sender, RoutedEventArgs e)
     {
         GameCanvas.Children.Clear();
-        _torres.Clear();
-        _enemigos.Clear();
-        _proyectiles.Clear();
+        _torres.Limpiar();
+        _enemigos.Limpiar();
+        _proyectiles.Limpiar();
         _historial.Limpiar();
         _oro = OroInicial;
         _vidas = VidasIniciales;

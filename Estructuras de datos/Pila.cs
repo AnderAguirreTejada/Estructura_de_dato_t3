@@ -3,74 +3,108 @@ using System;
 namespace TowerDefenseWPF.EstructurasDeDatos;
 
 /// <summary>
-/// Recreación personalizada de una pila genérica (LIFO).
-/// Diseñada desde cero para gestionar el historial de acciones y posibilitar el "Deshacer".
+/// Pila genérica (LIFO) basada en nodos enlazados simples.
+/// Apila y desapila por la cima en O(1).
+/// Usada para el historial de acciones del jugador (Deshacer).
 /// </summary>
 public class Pila<T>
 {
-    private T[] _elementos;
-    private int _tamaño;
-    private const int CapacidadDefecto = 4;
-
-    public Pila()
+    private class Nodo
     {
-        _elementos = new T[CapacidadDefecto];
-        _tamaño = 0;
+        public T Dato;
+        public Nodo? Siguiente;
+
+        public Nodo(T dato)
+        {
+            Dato = dato;
+            Siguiente = null;
+        }
     }
 
-    public int Count => _tamaño;
-    public bool PuedeDeshacerse => _tamaño > 0; // Propiedad adaptada para HistorialAcciones
+    private Nodo? cima = null;
+    private int cantidad = 0;
 
-    public void Push(T item)
+    /// <summary>Número de elementos en la pila.</summary>
+    public int Cantidad => cantidad;
+
+    /// <summary>Indica si hay al menos una acción que se pueda deshacer.</summary>
+    public bool PuedeDeshacerse => cima != null;
+
+    /// <summary>Apila un elemento en la cima (LIFO).</summary>
+    public void Apilar(T dato)
     {
-        if (_tamaño == _elementos.Length)
-            Agrandar();
-        _elementos[_tamaño++] = item;
+        Nodo nuevo = new Nodo(dato);
+        if (cima == null)
+        {
+            cima = nuevo;
+        }
+        else
+        {
+            nuevo.Siguiente = cima;
+            cima = nuevo;
+        }
+        cantidad++;
     }
 
-    public T Pop()
+    /// <summary>Extrae y devuelve el elemento de la cima.</summary>
+    public T Desapilar()
     {
-        if (_tamaño == 0)
+        if (cima == null)
             throw new InvalidOperationException("La pila está vacía.");
-        
-        T item = _elementos[--_tamaño];
-        _elementos[_tamaño] = default!; // Liberar referencia para el GC
-        return item;
+
+        T dato = cima.Dato;
+        cima = cima.Siguiente;
+        cantidad--;
+        return dato;
     }
 
-    public bool TryPop(out T result)
+    /// <summary>Intenta extraer el elemento de la cima sin lanzar excepción.</summary>
+    public bool IntentarDesapilar(out T resultado)
     {
-        if (_tamaño == 0)
+        if (cima == null)
         {
-            result = default!;
+            resultado = default!;
             return false;
         }
-        result = Pop();
+        resultado = Desapilar();
         return true;
     }
 
-    public bool TryPeek(out T result)
+    /// <summary>Consulta el elemento de la cima sin extraerlo.</summary>
+    public T VerCima()
     {
-        if (_tamaño == 0)
+        if (cima == null)
+            throw new InvalidOperationException("La pila está vacía.");
+        return cima.Dato;
+    }
+
+    /// <summary>Intenta consultar la cima sin lanzar excepción.</summary>
+    public bool IntentarVerCima(out T resultado)
+    {
+        if (cima == null)
         {
-            result = default!;
+            resultado = default!;
             return false;
         }
-        result = _elementos[_tamaño - 1];
+        resultado = cima.Dato;
         return true;
     }
 
-    public void Clear()
+    /// <summary>Vacía la pila.</summary>
+    public void Limpiar()
     {
-        Array.Clear(_elementos, 0, _tamaño);
-        _tamaño = 0;
+        cima = null;
+        cantidad = 0;
     }
 
-    private void Agrandar()
+    /// <summary>Muestra todos los elementos desde la cima por consola.</summary>
+    public void Mostrar()
     {
-        int nuevaCapacidad = _elementos.Length == 0 ? CapacidadDefecto : _elementos.Length * 2;
-        T[] nuevoArreglo = new T[nuevaCapacidad];
-        Array.Copy(_elementos, nuevoArreglo, _tamaño);
-        _elementos = nuevoArreglo;
+        Nodo? temp = cima;
+        while (temp != null)
+        {
+            Console.WriteLine(temp.Dato);
+            temp = temp.Siguiente;
+        }
     }
 }
