@@ -5,110 +5,144 @@ using System.Collections.Generic;
 namespace TowerDefenseWPF.EstructurasDeDatos;
 
 /// <summary>
-/// Recreación personalizada de una lista dinámica genérica basada en arreglos.
-/// Proporciona acceso por índice O(1) y redimensionamiento automático.
+/// Lista genérica dinámica basada en nodos enlazados simples.
+/// Permite agregar, eliminar, buscar y recorrer elementos.
+/// Acceso por índice en O(n), inserción/eliminación al final en O(n).
 /// </summary>
 public class Lista<T> : IEnumerable<T>
 {
-    private T[] _elementos;
-    private int _tamaño;
-    private const int CapacidadDefecto = 4;
-
-    public Lista()
+    private class Nodo
     {
-        _elementos = new T[CapacidadDefecto];
-        _tamaño = 0;
-    }
+        public T Dato;
+        public Nodo? Siguiente;
 
-    public Lista(int capacidad)
-    {
-        if (capacidad < 0) throw new ArgumentOutOfRangeException(nameof(capacidad));
-        _elementos = new T[capacidad];
-        _tamaño = 0;
-    }
-
-    public int Count => _tamaño;
-
-    public T this[int index]
-    {
-        get
+        public Nodo(T dato)
         {
-            if (index < 0 || index >= _tamaño)
-                throw new ArgumentOutOfRangeException(nameof(index));
-            return _elementos[index];
-        }
-        set
-        {
-            if (index < 0 || index >= _tamaño)
-                throw new ArgumentOutOfRangeException(nameof(index));
-            _elementos[index] = value;
+            Dato = dato;
+            Siguiente = null;
         }
     }
 
-    public void Add(T item)
+    private Nodo? primero = null;
+    private Nodo? ultimo = null;
+    private int cantidad = 0;
+
+    /// <summary>Número de elementos en la lista.</summary>
+    public int Cantidad => cantidad;
+
+    /// <summary>Indica si la lista no tiene elementos.</summary>
+    public bool EstaVacia => primero == null;
+
+    /// <summary>Agrega un elemento al final de la lista.</summary>
+    public void Agregar(T dato)
     {
-        if (_tamaño == _elementos.Length)
-            Agrandar();
-        _elementos[_tamaño++] = item;
+        Nodo nuevo = new Nodo(dato);
+        if (primero == null)
+        {
+            primero = nuevo;
+            ultimo = nuevo;
+        }
+        else
+        {
+            ultimo!.Siguiente = nuevo;
+            ultimo = nuevo;
+        }
+        cantidad++;
     }
 
-    public bool Remove(T item)
+    /// <summary>Elimina la primera ocurrencia del elemento. Devuelve true si se encontró.</summary>
+    public bool Eliminar(T dato)
     {
-        int index = IndexOf(item);
-        if (index >= 0)
+        Nodo? actual = primero;
+        Nodo? anterior = null;
+
+        while (actual != null)
         {
-            RemoveAt(index);
-            return true;
+            if (EqualityComparer<T>.Default.Equals(actual.Dato, dato))
+            {
+                if (anterior == null)
+                {
+                    // Es el primero
+                    primero = actual.Siguiente;
+                }
+                else
+                {
+                    anterior.Siguiente = actual.Siguiente;
+                }
+
+                if (actual.Siguiente == null)
+                {
+                    // Era el último
+                    ultimo = anterior;
+                }
+
+                cantidad--;
+                return true;
+            }
+
+            anterior = actual;
+            actual = actual.Siguiente;
+        }
+
+        return false;
+    }
+
+    /// <summary>Indica si el elemento está en la lista.</summary>
+    public bool Contiene(T dato)
+    {
+        Nodo? temp = primero;
+        while (temp != null)
+        {
+            if (EqualityComparer<T>.Default.Equals(temp.Dato, dato))
+                return true;
+            temp = temp.Siguiente;
         }
         return false;
     }
 
-    public void RemoveAt(int index)
+    /// <summary>Acceso por índice en O(n).</summary>
+    public T this[int indice]
     {
-        if (index < 0 || index >= _tamaño)
-            throw new ArgumentOutOfRangeException(nameof(index));
-        
-        _tamaño--;
-        if (index < _tamaño)
+        get
         {
-            // Desplazar elementos hacia la izquierda para llenar el vacío
-            Array.Copy(_elementos, index + 1, _elementos, index, _tamaño - index);
+            if (indice < 0 || indice >= cantidad)
+                throw new ArgumentOutOfRangeException(nameof(indice));
+
+            Nodo? temp = primero;
+            for (int i = 0; i < indice; i++)
+                temp = temp!.Siguiente;
+
+            return temp!.Dato;
         }
-        _elementos[_tamaño] = default!; // Liberar referencia
     }
 
-    public int IndexOf(T item)
+    /// <summary>Vacía la lista.</summary>
+    public void Limpiar()
     {
-        for (int i = 0; i < _tamaño; i++)
+        primero = null;
+        ultimo = null;
+        cantidad = 0;
+    }
+
+    /// <summary>Muestra todos los elementos por consola.</summary>
+    public void Mostrar()
+    {
+        Nodo? temp = primero;
+        while (temp != null)
         {
-            if (EqualityComparer<T>.Default.Equals(_elementos[i], item))
-                return i;
+            Console.WriteLine(temp.Dato);
+            temp = temp.Siguiente;
         }
-        return -1;
-    }
-
-    public bool Contains(T item) => IndexOf(item) >= 0;
-
-    public void Clear()
-    {
-        Array.Clear(_elementos, 0, _tamaño);
-        _tamaño = 0;
-    }
-
-    private void Agrandar()
-    {
-        int nuevaCapacidad = _elementos.Length == 0 ? CapacidadDefecto : _elementos.Length * 2;
-        T[] nuevoArreglo = new T[nuevaCapacidad];
-        Array.Copy(_elementos, nuevoArreglo, _tamaño);
-        _elementos = nuevoArreglo;
     }
 
     // Soporte para bucles foreach
     public IEnumerator<T> GetEnumerator()
     {
-        for (int i = 0; i < _tamaño; i++)
+        Nodo? temp = primero;
+        while (temp != null)
         {
-            yield return _elementos[i];
+            yield return temp.Dato;
+            temp = temp.Siguiente;
         }
     }
 

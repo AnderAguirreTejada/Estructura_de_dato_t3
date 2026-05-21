@@ -3,84 +3,99 @@ using System;
 namespace TowerDefenseWPF.EstructurasDeDatos;
 
 /// <summary>
-/// Recreación personalizada de una cola genérica (FIFO) basada en nodos dinámicos enlazados.
-/// Proporciona encolado y desencolado en tiempo constante O(1).
+/// Cola genérica (FIFO) basada en nodos enlazados simples.
+/// Encola por el final y desencola por el frente en O(1).
 /// </summary>
 public class Cola<T>
 {
     private class Nodo
     {
-        public T Valor;
+        public T Dato;
         public Nodo? Siguiente;
 
-        public Nodo(T valor)
+        public Nodo(T dato)
         {
-            Valor = valor;
+            Dato = dato;
             Siguiente = null;
         }
     }
 
-    private Nodo? _cabeza;
-    private Nodo? _cola;
-    private int _cantidad;
+    private Nodo? frente = null;
+    private Nodo? final = null;
+    private int cantidad = 0;
 
-    public Cola()
+    /// <summary>Número de elementos en la cola.</summary>
+    public int Cantidad => cantidad;
+
+    /// <summary>Indica si la cola no tiene elementos.</summary>
+    public bool EstaVacia => frente == null;
+
+    /// <summary>Agrega un elemento al final de la cola (FIFO).</summary>
+    public void Encolar(T dato)
     {
-        _cabeza = null;
-        _cola = null;
-        _cantidad = 0;
-    }
-
-    public int Count => _cantidad;
-
-    public void Enqueue(T item)
-    {
-        Nodo nuevoNodo = new Nodo(item);
-        if (_cabeza == null)
+        Nodo nuevo = new Nodo(dato);
+        if (frente == null)
         {
-            _cabeza = nuevoNodo;
-            _cola = nuevoNodo;
+            frente = nuevo;
+            final = nuevo;
         }
         else
         {
-            _cola!.Siguiente = nuevoNodo;
-            _cola = nuevoNodo;
+            final!.Siguiente = nuevo;
+            final = nuevo;
         }
-        _cantidad++;
+        cantidad++;
     }
 
-    public T Dequeue()
+    /// <summary>Extrae y devuelve el elemento del frente de la cola.</summary>
+    public T Desencolar()
     {
-        if (_cabeza == null)
+        if (frente == null)
             throw new InvalidOperationException("La cola está vacía.");
 
-        T valor = _cabeza.Valor;
-        _cabeza = _cabeza.Siguiente;
-        
-        if (_cabeza == null)
-        {
-            _cola = null;
-        }
-        
-        _cantidad--;
-        return valor;
+        T dato = frente.Dato;
+        frente = frente.Siguiente;
+
+        if (frente == null)
+            final = null;
+
+        cantidad--;
+        return dato;
     }
 
-    public bool TryDequeue(out T result)
+    /// <summary>Intenta desencolar sin lanzar excepción. Devuelve false si está vacía.</summary>
+    public bool IntentarDesencolar(out T resultado)
     {
-        if (_cabeza == null)
+        if (frente == null)
         {
-            result = default!;
+            resultado = default!;
             return false;
         }
-        result = Dequeue();
+        resultado = Desencolar();
         return true;
     }
 
-    public void Clear()
+    /// <summary>Vacía la cola.</summary>
+    public void Destruir()
     {
-        _cabeza = null;
-        _cola = null;
-        _cantidad = 0;
+        frente = null;
+        final = null;
+        cantidad = 0;
+    }
+
+    /// <summary>Muestra todos los elementos por consola.</summary>
+    public void Mostrar()
+    {
+        Nodo? temp = frente;
+        if (temp == null)
+        {
+            Console.WriteLine("No hay datos en la cola.");
+            return;
+        }
+        while (temp != null)
+        {
+            Console.WriteLine(temp.Dato);
+            temp = temp.Siguiente;
+        }
     }
 }
