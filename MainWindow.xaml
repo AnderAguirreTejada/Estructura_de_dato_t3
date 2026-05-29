@@ -54,9 +54,13 @@
         <Border Grid.Column="0" BorderBrush="#FF2A2A3A" BorderThickness="0,0,2,0">
             <Grid>
                 <Canvas x:Name="GameCanvas" Width="1000" Height="600"
-                        Background="#FF1E1E2E"
                         MouseDown="AlHacerClicEnLienzo_Presionado"
-                        MouseMove="AlMoverEnLienzo"/>
+                        MouseMove="AlMoverEnLienzo">
+                    <Canvas.Background>
+                        <ImageBrush ImageSource="/Img/Fondo.jpeg"
+                            Stretch="UniformToFill"/>
+                    </Canvas.Background>
+                </Canvas>
                 <Border x:Name="EndOverlay" Background="#CC000000"
                         Visibility="Collapsed">
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -73,7 +77,7 @@
         </Border>
 
         <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto"
-                      HorizontalScrollBarVisibility="Disabled" Background="#FF22222F">
+                      HorizontalScrollBarVisibility="Disabled" Background="#FF35272F">
             <StackPanel>
                 <TextBlock Text="DEFENSA DE TORRES" Foreground="#FFFFCC44"
                            FontSize="20" FontWeight="Bold"
