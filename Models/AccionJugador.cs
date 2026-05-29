@@ -1,3 +1,5 @@
+using TowerDefenseWPF.EstructurasDeDatos;
+
 namespace TowerDefenseWPF.Models;
 
 /// <summary>
@@ -44,11 +46,11 @@ public class AccionColocarTorre : AccionJugador
 public class AccionMejorarTorre : AccionJugador
 {
     public Torre Torre { get; }
-    public NodoMejora NodoAnterior { get; }
-    public NodoMejora NodoNuevo { get; }
+    public NodoArbolBinario<NodoMejora>? NodoAnterior { get; }
+    public NodoArbolBinario<NodoMejora>? NodoNuevo { get; }
     public int OroGastado { get; }
 
-    public AccionMejorarTorre(Torre torre, NodoMejora nodoAnterior, NodoMejora nodoNuevo, int oroGastado)
+    public AccionMejorarTorre(Torre torre, NodoArbolBinario<NodoMejora>? nodoAnterior, NodoArbolBinario<NodoMejora>? nodoNuevo, int oroGastado)
     {
         Torre = torre;
         NodoAnterior = nodoAnterior;
@@ -56,11 +58,11 @@ public class AccionMejorarTorre : AccionJugador
         OroGastado = oroGastado;
     }
 
-    public override string Descripcion => $"Mejorar {Torre.Tipo} → {NodoNuevo.Nombre}";
+    public override string Descripcion => $"Mejorar {Torre.Tipo} → {NodoNuevo?.Dato?.Nombre ?? "Base"}";
 
     public override void Deshacer(IContextoJuego ctx)
     {
-        NodoNuevo.Revertir(Torre);
+        NodoNuevo?.Dato?.Revertir(Torre);
         Torre.NodoActual = NodoAnterior;
         ctx.AñadirOro(OroGastado);
     }
