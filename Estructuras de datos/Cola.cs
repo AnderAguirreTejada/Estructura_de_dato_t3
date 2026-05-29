@@ -74,28 +74,4 @@ public class Cola<T>
         resultado = Desencolar();
         return true;
     }
-
-    /// <summary>Vacía la cola.</summary>
-    public void Destruir()
-    {
-        frente = null;
-        final = null;
-        cantidad = 0;
-    }
-
-    /// <summary>Muestra todos los elementos por consola.</summary>
-    public void Mostrar()
-    {
-        Nodo? temp = frente;
-        if (temp == null)
-        {
-            Console.WriteLine("No hay datos en la cola.");
-            return;
-        }
-        while (temp != null)
-        {
-            Console.WriteLine(temp.Dato);
-            temp = temp.Siguiente;
-        }
-    }
 }

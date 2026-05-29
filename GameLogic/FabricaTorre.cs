@@ -52,8 +52,8 @@ public static class FabricaTorre
         };
 
         torre.OroTotalInvertido = CostoDe(tipo);
-        torre.RaizMejora = ArbolMejoras.ConstruirPara(tipo);
-        torre.NodoActual = torre.RaizMejora;
+        torre.ArbolMejoras = ArbolMejoras.ConstruirPara(tipo);
+        torre.NodoActual = torre.ArbolMejoras.raiz;
         return torre;
     }
 }

@@ -124,17 +124,6 @@ public class Lista<T> : IEnumerable<T>
         cantidad = 0;
     }
 
-    /// <summary>Muestra todos los elementos por consola.</summary>
-    public void Mostrar()
-    {
-        Nodo? temp = primero;
-        while (temp != null)
-        {
-            Console.WriteLine(temp.Dato);
-            temp = temp.Siguiente;
-        }
-    }
-
     // Soporte para bucles foreach
     public IEnumerator<T> GetEnumerator()
     {
