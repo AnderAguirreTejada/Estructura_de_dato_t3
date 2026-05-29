@@ -3,6 +3,9 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Windows.Media.Imaging;
+using System.IO;
+using System;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using TowerDefenseWPF.EstructurasDeDatos;
@@ -29,6 +32,9 @@ public partial class MainWindow : Window, IContextoJuego
     private readonly Lista<Torre> _torres = new();
     private readonly Lista<Enemigo> _enemigos = new();
     private readonly Lista<Proyectil> _proyectiles = new();
+
+    // Pool de reproductores activos (usando la estructura propia Lista<T>)
+    private readonly Lista<MediaPlayer> _soundPlayers = new();
 
     private GestorOleadas _gestorOleadas;
     private readonly HistorialAcciones _historial = new();
@@ -124,21 +130,13 @@ public partial class MainWindow : Window, IContextoJuego
         enemigo.Posicion = DatosMapa.PuntosControl[0];
         enemigo.SiguientePuntoControlIndex = 1;
 
-        var color = tipo switch
-        {
-            TipoEnemigo.Normal => Color.FromRgb(0xE7, 0x4C, 0x3C),
-            TipoEnemigo.Rapido => Color.FromRgb(0xF1, 0xC4, 0x0F),
-            TipoEnemigo.Tanque => Color.FromRgb(0x7F, 0x8C, 0x8D),
-            _ => Colors.White
-        };
-
-        enemigo.Cuerpo = new Ellipse
+        enemigo.Cuerpo = new Rectangle
         {
             Width = enemigo.Radio * 2,
             Height = enemigo.Radio * 2,
-            Fill = new SolidColorBrush(color),
-            Stroke = Brushes.Black,
-            StrokeThickness = 1.5
+            Fill = RellenoEnemigo(tipo),
+            Stroke = Brushes.Transparent,
+            StrokeThickness = 0
         };
         enemigo.FondoBarraVida = new Rectangle
         {
@@ -274,22 +272,15 @@ public partial class MainWindow : Window, IContextoJuego
 
     private void DispararProyectil(Torre torre, Enemigo objetivo)
     {
-        var colorProyectil = torre.Tipo switch
-        {
-            TipoTorre.Arquero => Color.FromRgb(0xFF, 0xF1, 0xC0),
-            TipoTorre.Cañon => Color.FromRgb(0xFF, 0x88, 0x33),
-            TipoTorre.Mago => Color.FromRgb(0x66, 0xCC, 0xFF),
-            _ => Colors.White
-        };
-        double radio = torre.Tipo == TipoTorre.Cañon ? 6 : 4;
+        double radio = torre.Tipo == TipoTorre.Cañon ? 12 : 8;
 
-        var cuerpo = new Ellipse
+        var cuerpo = new Rectangle
         {
             Width = radio * 2,
             Height = radio * 2,
-            Fill = new SolidColorBrush(colorProyectil),
-            Stroke = Brushes.Black,
-            StrokeThickness = 0.8
+            Fill = RellenoProyectil(torre.Tipo),
+            Stroke = Brushes.Transparent,
+            StrokeThickness = 0
         };
         Panel.SetZIndex(cuerpo, 60);
         GameCanvas.Children.Add(cuerpo);
@@ -310,6 +301,7 @@ public partial class MainWindow : Window, IContextoJuego
         Canvas.SetLeft(cuerpo, p.Posicion.X - radio);
         Canvas.SetTop(cuerpo, p.Posicion.Y - radio);
         _proyectiles.Agregar(p);
+        PlayShot(torre.Tipo);
     }
 
     private void ActualizarProyectil(Proyectil p, double dt)
@@ -334,7 +326,7 @@ public partial class MainWindow : Window, IContextoJuego
             p.Posicion.X + dx / dist * paso,
             p.Posicion.Y + dy / dist * paso);
 
-        double r = ((Ellipse)p.Cuerpo).Width / 2;
+        double r = ((Rectangle)p.Cuerpo).Width / 2;
         Canvas.SetLeft(p.Cuerpo, p.Posicion.X - r);
         Canvas.SetTop(p.Cuerpo, p.Posicion.Y - r);
     }
@@ -401,6 +393,97 @@ public partial class MainWindow : Window, IContextoJuego
         anim.Completed += (_, _) => GameCanvas.Children.Remove(anillo);
         anillo.BeginAnimation(OpacityProperty, anim);
     }
+    
+    // Imagen de enemigo según su tipo
+    private static Brush RellenoEnemigo(TipoEnemigo tipo)
+    {
+        string imagen = tipo switch
+        {
+            TipoEnemigo.Normal => "pack://application:,,,/Img/Enemigo_normal.png",
+            TipoEnemigo.Rapido => "pack://application:,,,/Img/Enemigo_rapido.png",
+            TipoEnemigo.Tanque => "pack://application:,,,/Img/Enemigo_tanque.png",
+            _ => string.Empty
+        };
+
+        if (string.IsNullOrEmpty(imagen))
+            return new SolidColorBrush(Colors.White);
+
+        try
+        {
+            return new ImageBrush(new BitmapImage(new Uri(imagen, UriKind.Absolute)))
+            {
+                Stretch = Stretch.Uniform,
+                AlignmentX = AlignmentX.Center,
+                AlignmentY = AlignmentY.Center
+            };
+        }
+        catch
+        {
+            return new SolidColorBrush(Colors.White);
+        }
+    }
+
+    // Imagen de proyectil/munición según el tipo de torre
+    private static Brush RellenoProyectil(TipoTorre tipo)
+    {
+        string imagen = tipo switch
+        {
+            TipoTorre.Arquero => "pack://application:,,,/Img/Municion_flecha.png",
+            TipoTorre.Cañon => "pack://application:,,,/Img/Municion_Canon.png",
+            TipoTorre.Mago => "pack://application:,,,/Img/Municion_magia.png",
+            _ => string.Empty
+        };
+
+        if (string.IsNullOrEmpty(imagen))
+            return new SolidColorBrush(Colors.White);
+
+        try
+        {
+            return new ImageBrush(new BitmapImage(new Uri(imagen, UriKind.Absolute)))
+            {
+                Stretch = Stretch.Uniform,
+                AlignmentX = AlignmentX.Center,
+                AlignmentY = AlignmentY.Center
+            };
+        }
+        catch
+        {
+            return new SolidColorBrush(Colors.White);
+        }
+    }
+
+    // Reproducción de sonido para disparos (usa la carpeta 'sonidos')
+    private static string SonidoDisparoPara(TipoTorre tipo) => tipo switch
+    {
+        TipoTorre.Arquero => "Sonidos/Flecha.mp3.mpeg",
+        TipoTorre.Cañon => "Sonidos/Canon.mp3.mpeg",
+        TipoTorre.Mago => "Sonidos/Magia.mp3.mpeg",
+        _ => string.Empty
+    };
+
+    private void PlayShot(TipoTorre tipo)
+    {
+        var rel = SonidoDisparoPara(tipo);
+        if (string.IsNullOrEmpty(rel)) return;
+
+        string fullPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, rel);
+        if (!File.Exists(fullPath)) return;
+
+        try
+        {
+            var mp = new MediaPlayer();
+            mp.Open(new Uri(fullPath, UriKind.Absolute));
+            mp.Volume = 0.75;
+            mp.Play();
+            _soundPlayers.Agregar(mp);
+            mp.MediaEnded += (_, _) =>
+            {
+                try { mp.Stop(); mp.Close(); } catch { }
+                _soundPlayers.Eliminar(mp);
+            };
+        }
+        catch { /* silencioso si no hay sonido */ }
+    }
 
     // ===================== ENTRADA / CONTROLES =====================
 
@@ -466,8 +549,8 @@ public partial class MainWindow : Window, IContextoJuego
         };
         _torreFantasma = new Rectangle
         {
-            Width = 28,
-            Height = 28,
+            Width = 100,
+            Height = 100,
             Fill = new SolidColorBrush(ColorParaTorre(_tipoColocando.Value)) { Opacity = 0.7 },
             Stroke = Brushes.White,
             StrokeThickness = 1,
@@ -519,11 +602,11 @@ public partial class MainWindow : Window, IContextoJuego
         var torre = FabricaTorre.Crear(tipo, pos);
         var forma = new Rectangle
         {
-            Width = 28,
-            Height = 28,
-            Fill = new SolidColorBrush(ColorParaTorre(tipo)),
-            Stroke = Brushes.Black,
-            StrokeThickness = 1.5,
+            Width = 100,
+            Height = 100,
+            Fill = RellenoTorre(tipo),
+            Stroke = Brushes.Transparent,
+            StrokeThickness = 0,
             RadiusX = 4,
             RadiusY = 4
         };
@@ -547,6 +630,39 @@ public partial class MainWindow : Window, IContextoJuego
         if (_rangoFantasma != null) { GameCanvas.Children.Remove(_rangoFantasma); _rangoFantasma = null; }
         ActualizarResaltadoBotonesTorre();
         if (StatusLabel.Text.StartsWith("Coloca")) StatusLabel.Text = "";
+    }
+
+    private static Brush RellenoTorre(TipoTorre tipo)
+    {
+        if (tipo == TipoTorre.Arquero)
+        {
+            return new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Img/Torre_Arquero.png", UriKind.Absolute)))
+            {
+                Stretch = Stretch.Uniform,
+                AlignmentX = AlignmentX.Center,
+                AlignmentY = AlignmentY.Center
+            };
+        }
+        else if (tipo == TipoTorre.Cañon)
+        {
+            return new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Img/Torre_cañon.png", UriKind.Absolute)))
+            {
+                Stretch = Stretch.Uniform,
+                AlignmentX = AlignmentX.Center,
+                AlignmentY = AlignmentY.Center
+            };
+        }
+        else if (tipo == TipoTorre.Mago)
+        {
+            return new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Img/Torre_mago.png", UriKind.Absolute)))
+            {
+                Stretch = Stretch.Uniform,
+                AlignmentX = AlignmentX.Center,
+                AlignmentY = AlignmentY.Center
+            };
+        }
+
+        return new SolidColorBrush(ColorParaTorre(tipo));
     }
 
     private static Color ColorParaTorre(TipoTorre tipo) => tipo switch
@@ -616,7 +732,7 @@ public partial class MainWindow : Window, IContextoJuego
         }
         var t = _torreSelecionada;
         UpgradePanel.Visibility = Visibility.Visible;
-        SelectedTowerLabel.Text = $"{NombreDeTorre(t.Tipo)} — {t.NodoActual.Nombre}";
+        SelectedTowerLabel.Text = $"{NombreDeTorre(t.Tipo)} — {t.NodoActual?.Dato?.Nombre ?? "Base"}";
 
         var estadisticas = $"Daño: {t.Daño:0.#}   Ritmo: {t.VelocidadDisparo:0.##}/s\n" +
                     $"Rango: {t.Rango:0}";
@@ -640,18 +756,34 @@ public partial class MainWindow : Window, IContextoJuego
     private void DibujarArbolMejoras(Torre torre)
     {
         TreeCanvas.Children.Clear();
-        var posiciones = new Dictionary<NodoMejora, Point>();
-        DisponerArbol(torre.RaizMejora, new Point(120, 18), 100, 42, posiciones);
+        var posiciones = new Dictionary<NodoArbolBinario<NodoMejora>, Point>();
+        DisponerArbol(torre.ArbolMejoras.raiz, new Point(120, 18), 100, 42, posiciones);
 
+        // Dibujar líneas entre nodos
         foreach (var (nodo, pos) in posiciones)
         {
-            foreach (var hijo in nodo.Hijos)
+            // Línea a hijo izquierdo
+            if (nodo?.Izquierda != null && posiciones.TryGetValue(nodo.Izquierda, out var posIzq))
             {
-                if (!posiciones.TryGetValue(hijo, out var posFijo)) continue;
-                bool enCamino = EstaEnCaminoActual(nodo, hijo, torre.NodoActual);
+                bool enCamino = EstaEnCaminoActual(nodo, nodo.Izquierda, torre.NodoActual);
                 var linea = new Line
                 {
-                    X1 = pos.X, Y1 = pos.Y, X2 = posFijo.X, Y2 = posFijo.Y,
+                    X1 = pos.X, Y1 = pos.Y, X2 = posIzq.X, Y2 = posIzq.Y,
+                    Stroke = new SolidColorBrush(enCamino
+                        ? Color.FromRgb(0xFF, 0xCC, 0x44)
+                        : Color.FromRgb(0x44, 0x44, 0x5A)),
+                    StrokeThickness = enCamino ? 2 : 1
+                };
+                TreeCanvas.Children.Add(linea);
+            }
+            
+            // Línea a hijo derecho
+            if (nodo?.Derecha != null && posiciones.TryGetValue(nodo.Derecha, out var posDer))
+            {
+                bool enCamino = EstaEnCaminoActual(nodo, nodo.Derecha, torre.NodoActual);
+                var linea = new Line
+                {
+                    X1 = pos.X, Y1 = pos.Y, X2 = posDer.X, Y2 = posDer.Y,
                     Stroke = new SolidColorBrush(enCamino
                         ? Color.FromRgb(0xFF, 0xCC, 0x44)
                         : Color.FromRgb(0x44, 0x44, 0x5A)),
@@ -661,10 +793,11 @@ public partial class MainWindow : Window, IContextoJuego
             }
         }
 
+        // Dibujar nodos (círculos)
         foreach (var (nodo, pos) in posiciones)
         {
             bool esActual = nodo == torre.NodoActual;
-            bool estaDisponible = torre.NodoActual.Hijos.Contains(nodo);
+            bool estaDisponible = (nodo == torre.NodoActual?.Izquierda) || (nodo == torre.NodoActual?.Derecha);
             bool estaEnCamino = esActual || EsAncesor(nodo, torre.NodoActual);
 
             Color relleno = esActual ? Color.FromRgb(0xFF, 0xCC, 0x44)
@@ -686,41 +819,78 @@ public partial class MainWindow : Window, IContextoJuego
         }
     }
 
-    private static void DisponerArbol(NodoMejora nodo, Point pos, double espacioHorizontal, double espacioVertical,
-                                   Dictionary<NodoMejora, Point> resultado)
+    private static void DisponerArbol(NodoArbolBinario<NodoMejora>? nodo, Point pos, double espacioHorizontal, double espacioVertical,
+                                   Dictionary<NodoArbolBinario<NodoMejora>, Point> resultado)
     {
+        if (nodo == null) return;
+        
         resultado[nodo] = pos;
-        int n = nodo.Hijos.Count;
-        if (n == 0) return;
-        double inicioX = pos.X - espacioHorizontal * (n - 1) / 2.0;
-        for (int i = 0; i < n; i++)
+        
+        // Calcular posiciones para hijos binarios
+        if (nodo.Izquierda == null && nodo.Derecha == null) return;
+        
+        double espacioHijoIzq = pos.X - espacioHorizontal / 2.0;
+        double espacioHijoDer = pos.X + espacioHorizontal / 2.0;
+        double alturaHijo = pos.Y + espacioVertical;
+        
+        if (nodo.Izquierda != null)
         {
-            var posFijo = new Point(inicioX + i * espacioHorizontal, pos.Y + espacioVertical);
-            DisponerArbol(nodo.Hijos[i], posFijo, espacioHorizontal / 1.9, espacioVertical, resultado);
+            DisponerArbol(nodo.Izquierda, new Point(espacioHijoIzq, alturaHijo), espacioHorizontal / 1.9, espacioVertical, resultado);
+        }
+        
+        if (nodo.Derecha != null)
+        {
+            DisponerArbol(nodo.Derecha, new Point(espacioHijoDer, alturaHijo), espacioHorizontal / 1.9, espacioVertical, resultado);
         }
     }
 
-    private static bool EsAncesor(NodoMejora candidato, NodoMejora descendiente)
+    private static bool EsAncesor(NodoArbolBinario<NodoMejora>? candidato, NodoArbolBinario<NodoMejora>? descendiente)
     {
-        var n = descendiente.Padre;
-        while (n != null)
+        if (candidato == null || descendiente == null) return false;
+        
+        // Buscar si candidato está en el camino hacia la raíz desde descendiente
+        var actual = descendiente;
+        while (actual != null)
         {
-            if (n == candidato) return true;
-            n = n.Padre;
+            // Para encontrar ancestros en un árbol binario, necesitamos una referencia al padre
+            // Como no la tenemos, recorremos desde la raíz
+            actual = BuscarPadre(candidato, actual);
+            if (actual == candidato) return true;
         }
         return false;
     }
 
-    private static bool EstaEnCaminoActual(NodoMejora desde, NodoMejora hacia, NodoMejora actual)
+    private static NodoArbolBinario<NodoMejora>? BuscarPadre(NodoArbolBinario<NodoMejora>? raiz, NodoArbolBinario<NodoMejora> nodo)
     {
-        if (desde == actual && actual.Hijos.Contains(hacia)) return false;
-        return (hacia == actual || EsAncesor(hacia, actual)) && (desde == actual.Padre || EsAncesor(desde, actual));
+        if (raiz == null) return null;
+        if (raiz.Izquierda == nodo || raiz.Derecha == nodo) return raiz;
+        
+        var padreIzq = BuscarPadre(raiz.Izquierda, nodo);
+        if (padreIzq != null) return padreIzq;
+        
+        return BuscarPadre(raiz.Derecha, nodo);
+    }
+
+    private static bool EstaEnCaminoActual(NodoArbolBinario<NodoMejora>? desde, NodoArbolBinario<NodoMejora>? hacia, NodoArbolBinario<NodoMejora>? actual)
+    {
+        if (desde == null || hacia == null || actual == null) return false;
+        
+        // Si estamos en un nodo y el destino es uno de sus hijos, no está en camino
+        if (desde == actual && (actual.Izquierda == hacia || actual.Derecha == hacia)) return false;
+        
+        // Está en camino si hacia es actual o es ancestro de actual, y desde es el padre de actual o ancestro de actual
+        return (hacia == actual || EsAncesor(hacia, actual)) && 
+               (BuscarPadre(hacia, actual) == desde || EsAncesor(desde, actual));
     }
 
     private void ConstruirBotonesMejoras(Torre torre)
     {
         UpgradeOptionsPanel.Children.Clear();
-        if (torre.NodoActual.Hijos.Count == 0)
+        
+        // Verificar si hay hijos disponibles
+        bool tieneHijos = (torre.NodoActual?.Izquierda != null) || (torre.NodoActual?.Derecha != null);
+        
+        if (!tieneHijos)
         {
             UpgradeOptionsPanel.Children.Add(new TextBlock
             {
@@ -732,13 +902,15 @@ public partial class MainWindow : Window, IContextoJuego
             return;
         }
 
-        foreach (var hijo in torre.NodoActual.Hijos)
+        // Agregar botones para hijo izquierdo
+        if (torre.NodoActual?.Izquierda != null)
         {
+            var hijo = torre.NodoActual.Izquierda.Dato;
             var btn = new Button
             {
                 Margin = new Thickness(0, 3, 0, 0),
                 IsEnabled = _oro >= hijo.Costo,
-                Tag = hijo
+                Tag = torre.NodoActual.Izquierda
             };
             var pila = new StackPanel();
             pila.Children.Add(new TextBlock
@@ -755,22 +927,54 @@ public partial class MainWindow : Window, IContextoJuego
                 FontSize = 11
             });
             btn.Content = pila;
-            btn.Click += (_, _) => ComprarMejora(torre, hijo);
+            btn.Click += (_, _) => ComprarMejora(torre, torre.NodoActual.Izquierda);
+            UpgradeOptionsPanel.Children.Add(btn);
+        }
+        
+        // Agregar botones para hijo derecho
+        if (torre.NodoActual?.Derecha != null)
+        {
+            var hijo = torre.NodoActual.Derecha.Dato;
+            var btn = new Button
+            {
+                Margin = new Thickness(0, 3, 0, 0),
+                IsEnabled = _oro >= hijo.Costo,
+                Tag = torre.NodoActual.Derecha
+            };
+            var pila = new StackPanel();
+            pila.Children.Add(new TextBlock
+            {
+                Text = $"{hijo.Nombre}  ({hijo.Costo} oro)",
+                Foreground = Brushes.White,
+                FontWeight = FontWeights.Bold,
+                FontSize = 12
+            });
+            pila.Children.Add(new TextBlock
+            {
+                Text = hijo.Descripcion,
+                Foreground = new SolidColorBrush(Color.FromRgb(0xBB, 0xBB, 0xCC)),
+                FontSize = 11
+            });
+            btn.Content = pila;
+            btn.Click += (_, _) => ComprarMejora(torre, torre.NodoActual.Derecha);
             UpgradeOptionsPanel.Children.Add(btn);
         }
     }
 
-    private void ComprarMejora(Torre torre, NodoMejora hijo)
+    private void ComprarMejora(Torre torre, NodoArbolBinario<NodoMejora> nodoNuevo)
     {
+        if (nodoNuevo?.Dato == null) return;
+        var hijo = nodoNuevo.Dato;
+        
         if (_oro < hijo.Costo) return;
         _oro -= hijo.Costo;
 
         var anterior = torre.NodoActual;
         hijo.Aplicar(torre);
-        torre.NodoActual = hijo;
+        torre.NodoActual = nodoNuevo;
         torre.OroTotalInvertido += hijo.Costo;
 
-        _historial.Agregar(new AccionMejorarTorre(torre, anterior, hijo, hijo.Costo));
+        _historial.Agregar(new AccionMejorarTorre(torre, anterior, nodoNuevo, hijo.Costo));
 
         if (_torreSelecionada == torre)
         {
@@ -916,7 +1120,6 @@ public partial class MainWindow : Window, IContextoJuego
     {
         var exterior = new Polyline
         {
-            Stroke = new SolidColorBrush(Color.FromRgb(0x40, 0x42, 0x55)),
             StrokeThickness = 34,
             StrokeLineJoin = PenLineJoin.Round,
             StrokeStartLineCap = PenLineCap.Round,
@@ -924,7 +1127,6 @@ public partial class MainWindow : Window, IContextoJuego
         };
         var interior = new Polyline
         {
-            Stroke = new SolidColorBrush(Color.FromRgb(0x2C, 0x2E, 0x3F)),
             StrokeThickness = 26,
             StrokeLineJoin = PenLineJoin.Round,
             StrokeStartLineCap = PenLineCap.Round,
