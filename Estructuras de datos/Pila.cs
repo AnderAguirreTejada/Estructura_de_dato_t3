@@ -96,15 +96,4 @@ public class Pila<T>
         cima = null;
         cantidad = 0;
     }
-
-    /// <summary>Muestra todos los elementos desde la cima por consola.</summary>
-    public void Mostrar()
-    {
-        Nodo? temp = cima;
-        while (temp != null)
-        {
-            Console.WriteLine(temp.Dato);
-            temp = temp.Siguiente;
-        }
-    }
 }
