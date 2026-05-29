@@ -1,5 +1,6 @@
 using System.Windows;
 using System.Windows.Shapes;
+using TowerDefenseWPF.EstructurasDeDatos;
 
 namespace TowerDefenseWPF.Models;
 
@@ -22,8 +23,8 @@ public class Torre
     public int OroTotalInvertido { get; set; }
     public double EnfriamientoDisparo { get; set; }
 
-    public NodoMejora RaizMejora { get; set; } = null!;
-    public NodoMejora NodoActual { get; set; } = null!;
+    public ArbolBinario<NodoMejora> ArbolMejoras { get; set; } = null!;
+    public NodoArbolBinario<NodoMejora>? NodoActual { get; set; }
 
     public Shape Cuerpo { get; set; } = null!;
 }
