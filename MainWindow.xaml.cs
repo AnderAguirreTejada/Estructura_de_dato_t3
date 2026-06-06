@@ -74,7 +74,6 @@ public partial class MainWindow : Window, IContextoJuego
         _ultimoTick = DateTime.Now;
         _temporizador.Start();
     }
-
     // ===================== BUCLE DE JUEGO =====================
 
     private void TickDelJuego(object? sender, EventArgs e)
@@ -117,10 +116,15 @@ public partial class MainWindow : Window, IContextoJuego
             ActualizarProyectil(p, dt);
             if (p.EstaTerminado) EliminarProyectil(p);
         }
-
+        DibujarCamino();
         ActualizarEstadísticas();
         VerificarCondiciónDeVictoria();
     }
+
+
+
+
+
 
     // ===================== ENEMIGOS =====================
 
@@ -486,7 +490,6 @@ public partial class MainWindow : Window, IContextoJuego
     }
 
     // ===================== ENTRADA / CONTROLES =====================
-
     private void AlHacerClicEnLienzo_Presionado(object sender, MouseButtonEventArgs e)
     {
         if (_juegoTerminado) return;
@@ -511,6 +514,9 @@ public partial class MainWindow : Window, IContextoJuego
         if (torre != null) SeleccionarTorre(torre);
         else DeseleccionarTorre();
     }
+
+
+
 
     private void AlMoverEnLienzo(object sender, MouseEventArgs e)
     {

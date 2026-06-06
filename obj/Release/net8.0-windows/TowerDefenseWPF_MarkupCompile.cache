@@ -4,15 +4,15 @@
 winexe
 C#
 .cs
-C:\Users\PC\Downloads\Estructura_de_dato_t3\obj\Debug\net8.0-windows\
+C:\Users\PC\Downloads\Estructura_de_dato_t3\obj\Release\net8.0-windows\
 TowerDefenseWPF
 none
 false
-TRACE;DEBUG;NET;NET8_0;NETCOREAPP
+TRACE;RELEASE;NET;NET8_0;NETCOREAPP
 C:\Users\PC\Downloads\Estructura_de_dato_t3\App.xaml
 11407045341
 3-880283618
-24-483921269
+24542255202
 198-211836927
 MainWindow.xaml;
 
