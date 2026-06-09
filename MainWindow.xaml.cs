@@ -633,37 +633,32 @@ public partial class MainWindow : Window, IContextoJuego
     }
 
     private static Brush RellenoTorre(TipoTorre tipo)
+{
+    string imagen = tipo switch
     {
-        if (tipo == TipoTorre.Arquero)
-        {
-            return new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Img/Torre_Arquero.png", UriKind.Absolute)))
-            {
-                Stretch = Stretch.Uniform,
-                AlignmentX = AlignmentX.Center,
-                AlignmentY = AlignmentY.Center
-            };
-        }
-        else if (tipo == TipoTorre.Cañon)
-        {
-            return new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Img/Torre_cañon.png", UriKind.Absolute)))
-            {
-                Stretch = Stretch.Uniform,
-                AlignmentX = AlignmentX.Center,
-                AlignmentY = AlignmentY.Center
-            };
-        }
-        else if (tipo == TipoTorre.Mago)
-        {
-            return new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Img/Torre_mago.png", UriKind.Absolute)))
-            {
-                Stretch = Stretch.Uniform,
-                AlignmentX = AlignmentX.Center,
-                AlignmentY = AlignmentY.Center
-            };
-        }
+        TipoTorre.Arquero => "pack://application:,,,/Img/Torre_Arquero.png",
+        TipoTorre.Cañon => "pack://application:,,,/Img/Torre_cañon.png",
+        TipoTorre.Mago => "pack://application:,,,/Img/Torre_mago.png",
+        _ => string.Empty
+    };
 
-        return new SolidColorBrush(ColorParaTorre(tipo));
+    if (string.IsNullOrEmpty(imagen))
+        return new SolidColorBrush(Colors.White);
+
+    try
+    {
+        return new ImageBrush(new BitmapImage(new Uri(imagen, UriKind.Absolute)))
+        {
+            Stretch = Stretch.Uniform,
+            AlignmentX = AlignmentX.Center,
+            AlignmentY = AlignmentY.Center
+        };
     }
+    catch
+    {
+        return new SolidColorBrush(Colors.White);
+    }
+}
 
     private static Color ColorParaTorre(TipoTorre tipo) => tipo switch
     {
