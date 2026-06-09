@@ -638,38 +638,45 @@ public partial class MainWindow : Window, IContextoJuego
         if (StatusLabel.Text.StartsWith("Coloca")) StatusLabel.Text = "";
     }
 
-    private static Brush RellenoTorre(TipoTorre tipo)
+   private static Brush RellenoTorre(TipoTorre tipo)
+    //Devolvemos la imagen segun el tipo de torre. 
+{
+    if (tipo == TipoTorre.Arquero)
     {
-        if (tipo == TipoTorre.Arquero)
+        return new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Img/Torre_Arquero.png", UriKind.Absolute)))
         {
-            return new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Img/Torre_Arquero.png", UriKind.Absolute)))
-            {
-                Stretch = Stretch.Uniform,
-                AlignmentX = AlignmentX.Center,
-                AlignmentY = AlignmentY.Center
-            };
-        }
-        else if (tipo == TipoTorre.Cañon)
-        {
-            return new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Img/Torre_cañon.png", UriKind.Absolute)))
-            {
-                Stretch = Stretch.Uniform,
-                AlignmentX = AlignmentX.Center,
-                AlignmentY = AlignmentY.Center
-            };
-        }
-        else if (tipo == TipoTorre.Mago)
-        {
-            return new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Img/Torre_mago.png", UriKind.Absolute)))
-            {
-                Stretch = Stretch.Uniform,
-                AlignmentX = AlignmentX.Center,
-                AlignmentY = AlignmentY.Center
-            };
-        }
+            Stretch = Stretch.Uniform,
 
-        return new SolidColorBrush(ColorParaTorre(tipo));
+            AlignmentX = AlignmentX.Center,
+
+            AlignmentY = AlignmentY.Center
+        };
     }
+    else if (tipo == TipoTorre.Cañon)
+    {
+        return new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Img/Torre_cañon.png", UriKind.Absolute)))
+        {
+            Stretch = Stretch.Uniform,
+
+            AlignmentX = AlignmentX.Center,
+
+            AlignmentY = AlignmentY.Center
+        };
+    }
+    else if (tipo == TipoTorre.Mago)
+    {
+        return new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Img/Torre_mago.png", UriKind.Absolute)))
+        {
+
+            Stretch = Stretch.Uniform,
+
+            AlignmentX = AlignmentX.Center,
+
+            AlignmentY = AlignmentY.Center
+        };
+    }
+    return new SolidColorBrush(ColorParaTorre(tipo));
+}
 
     private static Color ColorParaTorre(TipoTorre tipo) => tipo switch
     {
