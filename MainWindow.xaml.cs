@@ -14,16 +14,6 @@ using TowerDefenseWPF.Models;
 
 namespace TowerDefenseWPF;
 
-/// <summary>
-/// Lógica principal del juego (code-behind).
-///
-/// Estructuras de datos usadas (resumen):
-///   - <c>Lista&lt;Torre&gt; _torres</c>, <c>Lista&lt;Enemigo&gt; _enemigos</c>,
-///     <c>Lista&lt;Proyectil&gt; _proyectiles</c>: listas propias basadas en nodos enlazados.
-///   - <c>Cola&lt;GeneracionEnemigo&gt;</c> en <see cref="GestorOleadas"/>: cola FIFO propia.
-///   - <c>Pila&lt;AccionJugador&gt;</c> en <see cref="HistorialAcciones"/>: pila LIFO propia.
-///   - Árbol n-ario de <see cref="NodoMejora"/> en cada torre: ramas de mejora.
-/// </summary>
 public partial class MainWindow : Window, IContextoJuego
 {
     private const int OroInicial = 220;
@@ -33,7 +23,6 @@ public partial class MainWindow : Window, IContextoJuego
     private readonly Lista<Enemigo> _enemigos = new();
     private readonly Lista<Proyectil> _proyectiles = new();
 
-    // Pool de reproductores activos (usando la estructura propia Lista<T>)
     private readonly Lista<MediaPlayer> _soundPlayers = new();
 
     private GestorOleadas _gestorOleadas;
@@ -566,8 +555,8 @@ public partial class MainWindow : Window, IContextoJuego
     private void ActualizarPosicionFantasma(Point p)
     {
         if (_torreFantasma == null || _rangoFantasma == null) return;
-        Canvas.SetLeft(_torreFantasma, p.X - 14);
-        Canvas.SetTop(_torreFantasma, p.Y - 14);
+        Canvas.SetLeft(_torreFantasma, p.X - 50);
+        Canvas.SetTop(_torreFantasma, p.Y - 50);
         Canvas.SetLeft(_rangoFantasma, p.X - _rangoFantasma.Width / 2);
         Canvas.SetTop(_rangoFantasma, p.Y - _rangoFantasma.Height / 2);
 
@@ -610,8 +599,8 @@ public partial class MainWindow : Window, IContextoJuego
             RadiusX = 4,
             RadiusY = 4
         };
-        Canvas.SetLeft(forma, pos.X - 14);
-        Canvas.SetTop(forma, pos.Y - 14);
+        Canvas.SetLeft(forma, pos.X - 50);
+        Canvas.SetTop(forma, pos.Y - 50);
         Panel.SetZIndex(forma, 30);
         GameCanvas.Children.Add(forma);
         torre.Cuerpo = forma;
@@ -631,34 +620,33 @@ public partial class MainWindow : Window, IContextoJuego
         ActualizarResaltadoBotonesTorre();
         if (StatusLabel.Text.StartsWith("Coloca")) StatusLabel.Text = "";
     }
-
     private static Brush RellenoTorre(TipoTorre tipo)
-{
-    string imagen = tipo switch
     {
-        TipoTorre.Arquero => "pack://application:,,,/Img/Torre_Arquero.png",
-        TipoTorre.Cañon => "pack://application:,,,/Img/Torre_cañon.png",
-        TipoTorre.Mago => "pack://application:,,,/Img/Torre_mago.png",
-        _ => string.Empty
-    };
-
-    if (string.IsNullOrEmpty(imagen))
-        return new SolidColorBrush(Colors.White);
-
-    try
-    {
-        return new ImageBrush(new BitmapImage(new Uri(imagen, UriKind.Absolute)))
+        string imagen = tipo switch
         {
-            Stretch = Stretch.Uniform,
-            AlignmentX = AlignmentX.Center,
-            AlignmentY = AlignmentY.Center
+            TipoTorre.Arquero => "pack://application:,,,/Img/Torre_Arquero.png",
+            TipoTorre.Cañon => "pack://application:,,,/Img/Torre_cañon.png",
+            TipoTorre.Mago => "pack://application:,,,/Img/Torre_mago.png",
+            _ => string.Empty
         };
+
+        if (string.IsNullOrEmpty(imagen))
+            return new SolidColorBrush(Colors.White);
+
+        try
+        {
+            return new ImageBrush(new BitmapImage(new Uri(imagen, UriKind.Absolute)))
+            {
+                Stretch = Stretch.Uniform,
+                AlignmentX = AlignmentX.Center,
+                AlignmentY = AlignmentY.Center
+            };
+        }
+        catch
+        {
+            return new SolidColorBrush(Colors.White);
+        }
     }
-    catch
-    {
-        return new SolidColorBrush(Colors.White);
-    }
-}
 
     private static Color ColorParaTorre(TipoTorre tipo) => tipo switch
     {
