@@ -1,20 +1,12 @@
+using TowerDefenseWPF.EstructurasDeDatos;
+
 namespace TowerDefenseWPF.Models;
 
-/// <summary>
-/// Operaciones del juego que las acciones del jugador necesitan invocar
-/// para revertirse. Lo expone <c>MainWindow</c> para que los Models
-/// no dependan directamente de la ventana.
-/// </summary>
 public interface IContextoJuego
 {
     void EliminarTorreSilenciosamente(Torre torre);
     void AñadirOro(int cantidad);
 }
-
-/// <summary>
-/// Acción del jugador que se apila en la Pila de historial para
-/// poder deshacerse con LIFO.
-/// </summary>
 public abstract class AccionJugador
 {
     public abstract string Descripcion { get; }
@@ -44,11 +36,11 @@ public class AccionColocarTorre : AccionJugador
 public class AccionMejorarTorre : AccionJugador
 {
     public Torre Torre { get; }
-    public NodoMejora NodoAnterior { get; }
-    public NodoMejora NodoNuevo { get; }
+    public NodoArbolBinario<NodoMejora>? NodoAnterior { get; }
+    public NodoArbolBinario<NodoMejora>? NodoNuevo { get; }
     public int OroGastado { get; }
 
-    public AccionMejorarTorre(Torre torre, NodoMejora nodoAnterior, NodoMejora nodoNuevo, int oroGastado)
+    public AccionMejorarTorre(Torre torre, NodoArbolBinario<NodoMejora>? nodoAnterior, NodoArbolBinario<NodoMejora>? nodoNuevo, int oroGastado)
     {
         Torre = torre;
         NodoAnterior = nodoAnterior;
@@ -56,11 +48,11 @@ public class AccionMejorarTorre : AccionJugador
         OroGastado = oroGastado;
     }
 
-    public override string Descripcion => $"Mejorar {Torre.Tipo} → {NodoNuevo.Nombre}";
+    public override string Descripcion => $"Mejorar {Torre.Tipo} → {NodoNuevo?.Dato?.Nombre ?? "Base"}";
 
     public override void Deshacer(IContextoJuego ctx)
     {
-        NodoNuevo.Revertir(Torre);
+        NodoNuevo?.Dato?.Revertir(Torre);
         Torre.NodoActual = NodoAnterior;
         ctx.AñadirOro(OroGastado);
     }

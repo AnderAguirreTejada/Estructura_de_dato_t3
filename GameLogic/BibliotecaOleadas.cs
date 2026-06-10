@@ -2,12 +2,6 @@ using TowerDefenseWPF.EstructurasDeDatos;
 using TowerDefenseWPF.Models;
 
 namespace TowerDefenseWPF.GameLogic;
-
-/// <summary>
-/// Catálogo de las 10 oleadas del juego.
-/// Cada oleada contiene una Lista&lt;GeneracionEnemigo&gt; propia que el
-/// GestorOleadas volcará en su Cola al iniciarse.
-/// </summary>
 public static class BibliotecaOleadas
 {
     public static Lista<Oleada> ConstruirTodasLasOleadas()

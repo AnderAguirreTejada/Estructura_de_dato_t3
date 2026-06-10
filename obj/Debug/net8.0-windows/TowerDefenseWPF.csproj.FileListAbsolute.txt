@@ -39,3 +39,7 @@ C:\Users\ander\OneDrive\Documentos\Idea de jueguito\obj\Debug\net8.0-windows\Tow
 C:\Users\ander\OneDrive\Documentos\Idea de jueguito\obj\Debug\net8.0-windows\TowerDefenseWPF.genruntimeconfig.cache
 C:\Users\ander\OneDrive\Documentos\Idea de jueguito\obj\Debug\net8.0-windows\ref\TowerDefenseWPF.dll
 C:\Users\ander\OneDrive\Documentos\Idea de jueguito\obj\Debug\net8.0-windows\TowerDefenseWPF.sourcelink.json
+C:\Users\ander\OneDrive\Documentos\Idea de jueguito\bin\Debug\net8.0-windows\sonidos\Canon.mp3.mpeg
+C:\Users\ander\OneDrive\Documentos\Idea de jueguito\bin\Debug\net8.0-windows\sonidos\Flecha.mp3.mpeg
+C:\Users\ander\OneDrive\Documentos\Idea de jueguito\bin\Debug\net8.0-windows\sonidos\Magia.mp3.mpeg
+C:\Users\ander\OneDrive\Documentos\Idea de jueguito\obj\Debug\net8.0-windows\TowerDefenseWPF_Content.g.cs

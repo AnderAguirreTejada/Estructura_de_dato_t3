@@ -21,7 +21,7 @@ public class Enemigo
     public bool EstaMuerto => Vida <= 0;
     public bool LlegoAlFinal { get; set; }
 
-    public Ellipse Cuerpo { get; set; } = null!;
+    public Shape Cuerpo { get; set; } = null!;
     public Rectangle FondoBarraVida { get; set; } = null!;
     public Rectangle BarraVida { get; set; } = null!;
 

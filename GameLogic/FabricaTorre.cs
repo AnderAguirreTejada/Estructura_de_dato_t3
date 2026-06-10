@@ -21,7 +21,7 @@ public static class FabricaTorre
             {
                 Tipo = tipo,
                 Posicion = posicion,
-                Rango = 135,
+                Rango = 185,
                 Daño = 14,
                 VelocidadDisparo = 2.0,
                 VelocidadProyectil = 420
@@ -30,7 +30,7 @@ public static class FabricaTorre
             {
                 Tipo = tipo,
                 Posicion = posicion,
-                Rango = 115,
+                Rango = 165,
                 Daño = 38,
                 VelocidadDisparo = 0.6,
                 VelocidadProyectil = 280,
@@ -41,7 +41,7 @@ public static class FabricaTorre
             {
                 Tipo = tipo,
                 Posicion = posicion,
-                Rango = 150,
+                Rango = 200,
                 Daño = 20,
                 VelocidadDisparo = 1.2,
                 VelocidadProyectil = 340,
@@ -52,8 +52,8 @@ public static class FabricaTorre
         };
 
         torre.OroTotalInvertido = CostoDe(tipo);
-        torre.RaizMejora = ArbolMejoras.ConstruirPara(tipo);
-        torre.NodoActual = torre.RaizMejora;
+        torre.ArbolMejoras = ArbolMejoras.ConstruirPara(tipo);
+        torre.NodoActual = torre.ArbolMejoras.raiz;
         return torre;
     }
 }

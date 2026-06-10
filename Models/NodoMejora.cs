@@ -1,32 +1,37 @@
-namespace TowerDefenseWPF.Models;
+using TowerDefenseWPF.EstructurasDeDatos;
 
-/// <summary>
-/// Nodo del árbol de mejoras de una torre.
-///
-/// Estructura: ÁRBOL n-ario. La raíz representa el estado base de la torre
-/// y cada hijo representa una mejora aplicable. Al elegir un hijo, el jugador
-/// "desciende" por una rama (especialización). Las ramas no se mezclan, lo que
-/// fuerza al jugador a elegir un estilo de mejora.
-///
-/// Se almacena la referencia al padre para poder revertir mejoras (junto con la Pila).
-/// </summary>
-public class NodoMejora
+namespace TowerDefenseWPF.Models;
+public class NodoMejora : IComparable<NodoMejora>
 {
     public string Nombre { get; init; } = "";
     public string Descripcion { get; init; } = "";
     public int Costo { get; init; }
     public int Nivel { get; init; }
+    public int Orden { get; init; }
 
     public Action<Torre> Aplicar { get; init; } = _ => { };
     public Action<Torre> Revertir { get; init; } = _ => { };
 
-    public List<NodoMejora> Hijos { get; } = new();
-    public NodoMejora? Padre { get; set; }
-
-    public NodoMejora AgregarHijo(NodoMejora hijo)
+    public int CompareTo(NodoMejora? other)
     {
-        hijo.Padre = this;
-        Hijos.Add(hijo);
-        return this;
+        if (other == null) return 1;
+        
+        // Primero compara por Orden (determina izquierda/derecha en el árbol)
+        int comparacion = this.Orden.CompareTo(other.Orden);
+        if (comparacion != 0) return comparacion;
+        
+        // Si tienen el mismo Orden, compara por Nombre para desempate
+        return this.Nombre.CompareTo(other.Nombre);
+    }
+
+    public override bool Equals(object? obj)
+    {
+        if (obj is not NodoMejora other) return false;
+        return this.Nombre == other.Nombre && this.Nivel == other.Nivel;
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Nombre, Nivel);
     }
 }
