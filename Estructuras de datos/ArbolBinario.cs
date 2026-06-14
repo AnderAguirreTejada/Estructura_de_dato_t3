@@ -2,9 +2,7 @@ using System;
 
 namespace TowerDefenseWPF.EstructurasDeDatos;
 
-/// <summary>
-/// Nodo genérico para el Árbol Binario de Búsqueda.
-/// </summary>
+
 public class NodoArbolBinario<T>
 {
     public T Dato;
@@ -18,16 +16,10 @@ public class NodoArbolBinario<T>
         Derecha = null;
     }
 }
-
-/// <summary>
-/// Árbol Binario de Búsqueda genérico basado en nodos enlazados.
-/// Requiere que T implemente IComparable&lt;T&gt;.
-/// </summary>
 public class ArbolBinario<T> where T : IComparable<T>
 {
     public NodoArbolBinario<T>? raiz = null;
 
-    /// <summary>Inserta un dato en el árbol manteniendo el orden BST.</summary>
     public void Insertar(T dato)
     {
         raiz = InsertarRecursivo(raiz, dato);

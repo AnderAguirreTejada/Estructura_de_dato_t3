@@ -3,12 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 
 namespace TowerDefenseWPF.EstructurasDeDatos;
-
-/// <summary>
-/// Lista genérica dinámica basada en nodos enlazados simples.
-/// Permite agregar, eliminar, buscar y recorrer elementos.
-/// Acceso por índice en O(n), inserción/eliminación al final en O(n).
-/// </summary>
 public class Lista<T> : IEnumerable<T>
 {
     private class Nodo
@@ -27,13 +21,10 @@ public class Lista<T> : IEnumerable<T>
     private Nodo? ultimo = null;
     private int cantidad = 0;
 
-    /// <summary>Número de elementos en la lista.</summary>
     public int Cantidad => cantidad;
 
-    /// <summary>Indica si la lista no tiene elementos.</summary>
     public bool EstaVacia => primero == null;
 
-    /// <summary>Agrega un elemento al final de la lista.</summary>
     public void Agregar(T dato)
     {
         Nodo nuevo = new Nodo(dato);
@@ -50,7 +41,6 @@ public class Lista<T> : IEnumerable<T>
         cantidad++;
     }
 
-    /// <summary>Elimina la primera ocurrencia del elemento. Devuelve true si se encontró.</summary>
     public bool Eliminar(T dato)
     {
         Nodo? actual = primero;
@@ -62,7 +52,6 @@ public class Lista<T> : IEnumerable<T>
             {
                 if (anterior == null)
                 {
-                    // Es el primero
                     primero = actual.Siguiente;
                 }
                 else
@@ -72,7 +61,6 @@ public class Lista<T> : IEnumerable<T>
 
                 if (actual.Siguiente == null)
                 {
-                    // Era el último
                     ultimo = anterior;
                 }
 
@@ -87,7 +75,6 @@ public class Lista<T> : IEnumerable<T>
         return false;
     }
 
-    /// <summary>Indica si el elemento está en la lista.</summary>
     public bool Contiene(T dato)
     {
         Nodo? temp = primero;
@@ -100,7 +87,6 @@ public class Lista<T> : IEnumerable<T>
         return false;
     }
 
-    /// <summary>Acceso por índice en O(n).</summary>
     public T this[int indice]
     {
         get
@@ -116,7 +102,6 @@ public class Lista<T> : IEnumerable<T>
         }
     }
 
-    /// <summary>Vacía la lista.</summary>
     public void Limpiar()
     {
         primero = null;
@@ -124,7 +109,6 @@ public class Lista<T> : IEnumerable<T>
         cantidad = 0;
     }
 
-    // Soporte para bucles foreach
     public IEnumerator<T> GetEnumerator()
     {
         Nodo? temp = primero;

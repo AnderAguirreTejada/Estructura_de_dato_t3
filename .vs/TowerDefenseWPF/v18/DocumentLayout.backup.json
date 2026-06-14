@@ -1,0 +1,394 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{093B8302-C72E-FFF5-D04C-5635A0A4FBB4}|TowerDefenseWPF.csproj|c:\\users\\ucc20412\\documents\\pt3\\estructura_de_dato_t3\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{093B8302-C72E-FFF5-D04C-5635A0A4FBB4}|TowerDefenseWPF.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{093B8302-C72E-FFF5-D04C-5635A0A4FBB4}|TowerDefenseWPF.csproj|c:\\users\\ucc20412\\documents\\pt3\\estructura_de_dato_t3\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{093B8302-C72E-FFF5-D04C-5635A0A4FBB4}|TowerDefenseWPF.csproj|solutionrelative:assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{093B8302-C72E-FFF5-D04C-5635A0A4FBB4}|TowerDefenseWPF.csproj|c:\\users\\ucc20412\\documents\\pt3\\estructura_de_dato_t3\\models\\torre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{093B8302-C72E-FFF5-D04C-5635A0A4FBB4}|TowerDefenseWPF.csproj|solutionrelative:models\\torre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{093B8302-C72E-FFF5-D04C-5635A0A4FBB4}|TowerDefenseWPF.csproj|c:\\users\\ucc20412\\documents\\pt3\\estructura_de_dato_t3\\models\\tipotorre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{093B8302-C72E-FFF5-D04C-5635A0A4FBB4}|TowerDefenseWPF.csproj|solutionrelative:models\\tipotorre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{093B8302-C72E-FFF5-D04C-5635A0A4FBB4}|TowerDefenseWPF.csproj|c:\\users\\ucc20412\\documents\\pt3\\estructura_de_dato_t3\\models\\tipoenemigo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{093B8302-C72E-FFF5-D04C-5635A0A4FBB4}|TowerDefenseWPF.csproj|solutionrelative:models\\tipoenemigo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{093B8302-C72E-FFF5-D04C-5635A0A4FBB4}|TowerDefenseWPF.csproj|c:\\users\\ucc20412\\documents\\pt3\\estructura_de_dato_t3\\models\\proyectil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{093B8302-C72E-FFF5-D04C-5635A0A4FBB4}|TowerDefenseWPF.csproj|solutionrelative:models\\proyectil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{093B8302-C72E-FFF5-D04C-5635A0A4FBB4}|TowerDefenseWPF.csproj|c:\\users\\ucc20412\\documents\\pt3\\estructura_de_dato_t3\\models\\oleada.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{093B8302-C72E-FFF5-D04C-5635A0A4FBB4}|TowerDefenseWPF.csproj|solutionrelative:models\\oleada.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{093B8302-C72E-FFF5-D04C-5635A0A4FBB4}|TowerDefenseWPF.csproj|c:\\users\\ucc20412\\documents\\pt3\\estructura_de_dato_t3\\models\\nodomejora.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{093B8302-C72E-FFF5-D04C-5635A0A4FBB4}|TowerDefenseWPF.csproj|solutionrelative:models\\nodomejora.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{093B8302-C72E-FFF5-D04C-5635A0A4FBB4}|TowerDefenseWPF.csproj|c:\\users\\ucc20412\\documents\\pt3\\estructura_de_dato_t3\\models\\generacionenemigo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{093B8302-C72E-FFF5-D04C-5635A0A4FBB4}|TowerDefenseWPF.csproj|solutionrelative:models\\generacionenemigo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{093B8302-C72E-FFF5-D04C-5635A0A4FBB4}|TowerDefenseWPF.csproj|c:\\users\\ucc20412\\documents\\pt3\\estructura_de_dato_t3\\models\\enemigo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{093B8302-C72E-FFF5-D04C-5635A0A4FBB4}|TowerDefenseWPF.csproj|solutionrelative:models\\enemigo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{093B8302-C72E-FFF5-D04C-5635A0A4FBB4}|TowerDefenseWPF.csproj|c:\\users\\ucc20412\\documents\\pt3\\estructura_de_dato_t3\\models\\accionjugador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{093B8302-C72E-FFF5-D04C-5635A0A4FBB4}|TowerDefenseWPF.csproj|solutionrelative:models\\accionjugador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{093B8302-C72E-FFF5-D04C-5635A0A4FBB4}|TowerDefenseWPF.csproj|c:\\users\\ucc20412\\documents\\pt3\\estructura_de_dato_t3\\gamelogic\\historialacciones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{093B8302-C72E-FFF5-D04C-5635A0A4FBB4}|TowerDefenseWPF.csproj|solutionrelative:gamelogic\\historialacciones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{093B8302-C72E-FFF5-D04C-5635A0A4FBB4}|TowerDefenseWPF.csproj|c:\\users\\ucc20412\\documents\\pt3\\estructura_de_dato_t3\\gamelogic\\gestoroleadas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{093B8302-C72E-FFF5-D04C-5635A0A4FBB4}|TowerDefenseWPF.csproj|solutionrelative:gamelogic\\gestoroleadas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{093B8302-C72E-FFF5-D04C-5635A0A4FBB4}|TowerDefenseWPF.csproj|c:\\users\\ucc20412\\documents\\pt3\\estructura_de_dato_t3\\gamelogic\\fabricatorre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{093B8302-C72E-FFF5-D04C-5635A0A4FBB4}|TowerDefenseWPF.csproj|solutionrelative:gamelogic\\fabricatorre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{093B8302-C72E-FFF5-D04C-5635A0A4FBB4}|TowerDefenseWPF.csproj|c:\\users\\ucc20412\\documents\\pt3\\estructura_de_dato_t3\\gamelogic\\fabricaenemigo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{093B8302-C72E-FFF5-D04C-5635A0A4FBB4}|TowerDefenseWPF.csproj|solutionrelative:gamelogic\\fabricaenemigo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{093B8302-C72E-FFF5-D04C-5635A0A4FBB4}|TowerDefenseWPF.csproj|c:\\users\\ucc20412\\documents\\pt3\\estructura_de_dato_t3\\gamelogic\\datosmapa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{093B8302-C72E-FFF5-D04C-5635A0A4FBB4}|TowerDefenseWPF.csproj|solutionrelative:gamelogic\\datosmapa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{093B8302-C72E-FFF5-D04C-5635A0A4FBB4}|TowerDefenseWPF.csproj|c:\\users\\ucc20412\\documents\\pt3\\estructura_de_dato_t3\\gamelogic\\bibliotecaoleadas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{093B8302-C72E-FFF5-D04C-5635A0A4FBB4}|TowerDefenseWPF.csproj|solutionrelative:gamelogic\\bibliotecaoleadas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{093B8302-C72E-FFF5-D04C-5635A0A4FBB4}|TowerDefenseWPF.csproj|c:\\users\\ucc20412\\documents\\pt3\\estructura_de_dato_t3\\gamelogic\\arbolmejoras.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{093B8302-C72E-FFF5-D04C-5635A0A4FBB4}|TowerDefenseWPF.csproj|solutionrelative:gamelogic\\arbolmejoras.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{093B8302-C72E-FFF5-D04C-5635A0A4FBB4}|TowerDefenseWPF.csproj|c:\\users\\ucc20412\\documents\\pt3\\estructura_de_dato_t3\\estructuras de datos\\pila.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{093B8302-C72E-FFF5-D04C-5635A0A4FBB4}|TowerDefenseWPF.csproj|solutionrelative:estructuras de datos\\pila.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{093B8302-C72E-FFF5-D04C-5635A0A4FBB4}|TowerDefenseWPF.csproj|c:\\users\\ucc20412\\documents\\pt3\\estructura_de_dato_t3\\estructuras de datos\\lista.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{093B8302-C72E-FFF5-D04C-5635A0A4FBB4}|TowerDefenseWPF.csproj|solutionrelative:estructuras de datos\\lista.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{093B8302-C72E-FFF5-D04C-5635A0A4FBB4}|TowerDefenseWPF.csproj|c:\\users\\ucc20412\\documents\\pt3\\estructura_de_dato_t3\\estructuras de datos\\cola.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{093B8302-C72E-FFF5-D04C-5635A0A4FBB4}|TowerDefenseWPF.csproj|solutionrelative:estructuras de datos\\cola.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{093B8302-C72E-FFF5-D04C-5635A0A4FBB4}|TowerDefenseWPF.csproj|c:\\users\\ucc20412\\documents\\pt3\\estructura_de_dato_t3\\estructuras de datos\\arbolbinario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{093B8302-C72E-FFF5-D04C-5635A0A4FBB4}|TowerDefenseWPF.csproj|solutionrelative:estructuras de datos\\arbolbinario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\MainWindow.xaml.cs",
+              "RelativeToolTip": "MainWindow.xaml.cs",
+              "ViewState": "AgIAAK0EAAAAAAAAAAAAACgBAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T19:45:55.458Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AssemblyInfo.cs",
+              "DocumentMoniker": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\AssemblyInfo.cs",
+              "RelativeDocumentMoniker": "AssemblyInfo.cs",
+              "ToolTip": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\AssemblyInfo.cs",
+              "RelativeToolTip": "AssemblyInfo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T19:45:53.938Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Torre.cs",
+              "DocumentMoniker": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\Models\\Torre.cs",
+              "RelativeDocumentMoniker": "Models\\Torre.cs",
+              "ToolTip": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\Models\\Torre.cs",
+              "RelativeToolTip": "Models\\Torre.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAiwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T19:45:51.625Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TipoTorre.cs",
+              "DocumentMoniker": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\Models\\TipoTorre.cs",
+              "RelativeDocumentMoniker": "Models\\TipoTorre.cs",
+              "ToolTip": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\Models\\TipoTorre.cs",
+              "RelativeToolTip": "Models\\TipoTorre.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T19:45:49.848Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TipoEnemigo.cs",
+              "DocumentMoniker": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\Models\\TipoEnemigo.cs",
+              "RelativeDocumentMoniker": "Models\\TipoEnemigo.cs",
+              "ToolTip": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\Models\\TipoEnemigo.cs",
+              "RelativeToolTip": "Models\\TipoEnemigo.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T19:45:47.976Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Proyectil.cs",
+              "DocumentMoniker": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\Models\\Proyectil.cs",
+              "RelativeDocumentMoniker": "Models\\Proyectil.cs",
+              "ToolTip": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\Models\\Proyectil.cs",
+              "RelativeToolTip": "Models\\Proyectil.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T19:45:45.705Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Oleada.cs",
+              "DocumentMoniker": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\Models\\Oleada.cs",
+              "RelativeDocumentMoniker": "Models\\Oleada.cs",
+              "ToolTip": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\Models\\Oleada.cs",
+              "RelativeToolTip": "Models\\Oleada.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T19:45:43.744Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "NodoMejora.cs",
+              "DocumentMoniker": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\Models\\NodoMejora.cs",
+              "RelativeDocumentMoniker": "Models\\NodoMejora.cs",
+              "ToolTip": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\Models\\NodoMejora.cs",
+              "RelativeToolTip": "Models\\NodoMejora.cs",
+              "ViewState": "AgIAACUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T19:45:41.521Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "GeneracionEnemigo.cs",
+              "DocumentMoniker": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\Models\\GeneracionEnemigo.cs",
+              "RelativeDocumentMoniker": "Models\\GeneracionEnemigo.cs",
+              "ToolTip": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\Models\\GeneracionEnemigo.cs",
+              "RelativeToolTip": "Models\\GeneracionEnemigo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T19:45:39.608Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Enemigo.cs",
+              "DocumentMoniker": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\Models\\Enemigo.cs",
+              "RelativeDocumentMoniker": "Models\\Enemigo.cs",
+              "ToolTip": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\Models\\Enemigo.cs",
+              "RelativeToolTip": "Models\\Enemigo.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T19:45:37.224Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "AccionJugador.cs",
+              "DocumentMoniker": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\Models\\AccionJugador.cs",
+              "RelativeDocumentMoniker": "Models\\AccionJugador.cs",
+              "ToolTip": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\Models\\AccionJugador.cs",
+              "RelativeToolTip": "Models\\AccionJugador.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T19:45:33.391Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "HistorialAcciones.cs",
+              "DocumentMoniker": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\GameLogic\\HistorialAcciones.cs",
+              "RelativeDocumentMoniker": "GameLogic\\HistorialAcciones.cs",
+              "ToolTip": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\GameLogic\\HistorialAcciones.cs",
+              "RelativeToolTip": "GameLogic\\HistorialAcciones.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T19:45:30.609Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "GestorOleadas.cs",
+              "DocumentMoniker": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\GameLogic\\GestorOleadas.cs",
+              "RelativeDocumentMoniker": "GameLogic\\GestorOleadas.cs",
+              "ToolTip": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\GameLogic\\GestorOleadas.cs",
+              "RelativeToolTip": "GameLogic\\GestorOleadas.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T19:45:26.8Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "FabricaTorre.cs",
+              "DocumentMoniker": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\GameLogic\\FabricaTorre.cs",
+              "RelativeDocumentMoniker": "GameLogic\\FabricaTorre.cs",
+              "ToolTip": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\GameLogic\\FabricaTorre.cs",
+              "RelativeToolTip": "GameLogic\\FabricaTorre.cs",
+              "ViewState": "AgIAADsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T19:45:24.168Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "FabricaEnemigo.cs",
+              "DocumentMoniker": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\GameLogic\\FabricaEnemigo.cs",
+              "RelativeDocumentMoniker": "GameLogic\\FabricaEnemigo.cs",
+              "ToolTip": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\GameLogic\\FabricaEnemigo.cs",
+              "RelativeToolTip": "GameLogic\\FabricaEnemigo.cs",
+              "ViewState": "AgIAACkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T19:45:21.808Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "DatosMapa.cs",
+              "DocumentMoniker": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\GameLogic\\DatosMapa.cs",
+              "RelativeDocumentMoniker": "GameLogic\\DatosMapa.cs",
+              "ToolTip": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\GameLogic\\DatosMapa.cs",
+              "RelativeToolTip": "GameLogic\\DatosMapa.cs",
+              "ViewState": "AgIAADcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T19:45:19.544Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "BibliotecaOleadas.cs",
+              "DocumentMoniker": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\GameLogic\\BibliotecaOleadas.cs",
+              "RelativeDocumentMoniker": "GameLogic\\BibliotecaOleadas.cs",
+              "ToolTip": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\GameLogic\\BibliotecaOleadas.cs",
+              "RelativeToolTip": "GameLogic\\BibliotecaOleadas.cs",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T19:45:17.397Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ArbolMejoras.cs",
+              "DocumentMoniker": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\GameLogic\\ArbolMejoras.cs",
+              "RelativeDocumentMoniker": "GameLogic\\ArbolMejoras.cs",
+              "ToolTip": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\GameLogic\\ArbolMejoras.cs",
+              "RelativeToolTip": "GameLogic\\ArbolMejoras.cs",
+              "ViewState": "AgIAAA4BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T19:45:14.04Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Pila.cs",
+              "DocumentMoniker": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\Estructuras de datos\\Pila.cs",
+              "RelativeDocumentMoniker": "Estructuras de datos\\Pila.cs",
+              "ToolTip": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\Estructuras de datos\\Pila.cs",
+              "RelativeToolTip": "Estructuras de datos\\Pila.cs",
+              "ViewState": "AgIAAFUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T19:45:11.265Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Lista.cs",
+              "DocumentMoniker": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\Estructuras de datos\\Lista.cs",
+              "RelativeDocumentMoniker": "Estructuras de datos\\Lista.cs",
+              "ToolTip": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\Estructuras de datos\\Lista.cs",
+              "RelativeToolTip": "Estructuras de datos\\Lista.cs",
+              "ViewState": "AgIAAGoAAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T19:45:07.217Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Cola.cs",
+              "DocumentMoniker": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\Estructuras de datos\\Cola.cs",
+              "RelativeDocumentMoniker": "Estructuras de datos\\Cola.cs",
+              "ToolTip": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\Estructuras de datos\\Cola.cs",
+              "RelativeToolTip": "Estructuras de datos\\Cola.cs",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T19:45:05.065Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "ArbolBinario.cs",
+              "DocumentMoniker": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\Estructuras de datos\\ArbolBinario.cs",
+              "RelativeDocumentMoniker": "Estructuras de datos\\ArbolBinario.cs",
+              "ToolTip": "C:\\Users\\UCC20412\\Documents\\pt3\\Estructura_de_dato_t3\\Estructuras de datos\\ArbolBinario.cs",
+              "RelativeToolTip": "Estructuras de datos\\ArbolBinario.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T19:44:44.953Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

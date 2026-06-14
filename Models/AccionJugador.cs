@@ -2,21 +2,12 @@ using TowerDefenseWPF.EstructurasDeDatos;
 
 namespace TowerDefenseWPF.Models;
 
-/// <summary>
-/// Operaciones del juego que las acciones del jugador necesitan invocar
-/// para revertirse. Lo expone <c>MainWindow</c> para que los Models
-/// no dependan directamente de la ventana.
-/// </summary>
 public interface IContextoJuego
 {
     void EliminarTorreSilenciosamente(Torre torre);
     void AñadirOro(int cantidad);
 }
 
-/// <summary>
-/// Acción del jugador que se apila en la Pila de historial para
-/// poder deshacerse con LIFO.
-/// </summary>
 public abstract class AccionJugador
 {
     public abstract string Descripcion { get; }

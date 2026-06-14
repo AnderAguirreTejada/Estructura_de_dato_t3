@@ -3,17 +3,6 @@ using TowerDefenseWPF.Models;
 
 namespace TowerDefenseWPF.GameLogic;
 
-/// <summary>
-/// Controla el spawn de enemigos.
-///
-/// Estructura clave: Cola&lt;GeneracionEnemigo&gt; (FIFO propia).
-/// Cada oleada llena la cola con sus enemigos en orden. En cada tick
-/// del game loop, si pasó suficiente tiempo, se hace Desencolar() y se
-/// genera el siguiente enemigo. Esto garantiza orden FIFO de salida,
-/// que es el comportamiento natural de una oleada.
-///
-/// El catálogo total de oleadas se guarda en una Lista&lt;Oleada&gt; propia.
-/// </summary>
 public class GestorOleadas
 {
     private readonly Lista<Oleada> _oleadas;
@@ -43,7 +32,7 @@ public class GestorOleadas
         if (EsOleadaActiva || !HayMásOleadas) return false;
         ÍndiceOleadaActual++;
 
-        // Cargar las generaciones de la oleada en la cola propia
+
         ColaActual = new Cola<GeneracionEnemigo>();
         foreach (var gen in _oleadas[ÍndiceOleadaActual].Generaciones)
             ColaActual.Encolar(gen);

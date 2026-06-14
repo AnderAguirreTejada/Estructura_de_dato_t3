@@ -3,11 +3,6 @@ using TowerDefenseWPF.EstructurasDeDatos;
 
 namespace TowerDefenseWPF.GameLogic;
 
-/// <summary>
-/// Camino del mapa definido como una Lista propia de waypoints.
-/// Los enemigos siguen estos puntos en orden, segmento a segmento.
-/// Empieza y termina fuera del lienzo (1000x600) para que entren y salgan suavemente.
-/// </summary>
 public static class DatosMapa
 {
     public const double AnchuraLienzo = 1000;

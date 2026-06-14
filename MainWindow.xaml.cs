@@ -64,7 +64,6 @@ public partial class MainWindow : Window, IContextoJuego
         _temporizador.Start();
     }
 
-    // ===================== BUCLE DE JUEGO =====================
 
     private void TickDelJuego(object? sender, EventArgs e)
     {
@@ -111,7 +110,7 @@ public partial class MainWindow : Window, IContextoJuego
         VerificarCondiciónDeVictoria();
     }
 
-    // ===================== ENEMIGOS =====================
+  
 
     private void GenerarEnemigo(TipoEnemigo tipo)
     {
@@ -226,7 +225,6 @@ public partial class MainWindow : Window, IContextoJuego
         }
     }
 
-    // ===================== TORRES =====================
 
     private Enemigo? BuscarObjetivo(Torre torre)
     {
@@ -383,7 +381,7 @@ public partial class MainWindow : Window, IContextoJuego
         anillo.BeginAnimation(OpacityProperty, anim);
     }
     
-    // Imagen de enemigo según su tipo
+
     private static Brush RellenoEnemigo(TipoEnemigo tipo)
     {
         string imagen = tipo switch
@@ -412,7 +410,7 @@ public partial class MainWindow : Window, IContextoJuego
         }
     }
 
-    // Imagen de proyectil/munición según el tipo de torre
+
     private static Brush RellenoProyectil(TipoTorre tipo)
     {
         string imagen = tipo switch
@@ -441,7 +439,6 @@ public partial class MainWindow : Window, IContextoJuego
         }
     }
 
-    // Reproducción de sonido para disparos (usa la carpeta 'sonidos')
     private static string SonidoDisparoPara(TipoTorre tipo) => tipo switch
     {
         TipoTorre.Arquero => "Sonidos/Flecha.mp3.mpeg",
@@ -471,10 +468,8 @@ public partial class MainWindow : Window, IContextoJuego
                 _soundPlayers.Eliminar(mp);
             };
         }
-        catch { /* silencioso si no hay sonido */ }
+        catch { }
     }
-
-    // ===================== ENTRADA / CONTROLES =====================
 
     private void AlHacerClicEnLienzo_Presionado(object sender, MouseButtonEventArgs e)
     {
@@ -518,7 +513,6 @@ public partial class MainWindow : Window, IContextoJuego
         StatusLabel.Text = $"Coloca {tipo} (click). Click derecho para cancelar.";
     }
 
-    // ===================== COLOCACIÓN DE TORRES =====================
 
     private void ConstruirFantasma()
     {
@@ -656,7 +650,6 @@ public partial class MainWindow : Window, IContextoJuego
         _ => Colors.White
     };
 
-    // ===================== SELECCIÓN Y MEJORAS DE TORRES =====================
 
     private Torre? BuscarTorresCercanas(Point p, double radio)
     {
@@ -742,10 +735,10 @@ public partial class MainWindow : Window, IContextoJuego
         var posiciones = new Dictionary<NodoArbolBinario<NodoMejora>, Point>();
         DisponerArbol(torre.ArbolMejoras.raiz, new Point(120, 18), 100, 42, posiciones);
 
-        // Dibujar líneas entre nodos
+
         foreach (var (nodo, pos) in posiciones)
         {
-            // Línea a hijo izquierdo
+
             if (nodo?.Izquierda != null && posiciones.TryGetValue(nodo.Izquierda, out var posIzq))
             {
                 bool enCamino = EstaEnCaminoActual(nodo, nodo.Izquierda, torre.NodoActual);
@@ -760,7 +753,7 @@ public partial class MainWindow : Window, IContextoJuego
                 TreeCanvas.Children.Add(linea);
             }
             
-            // Línea a hijo derecho
+
             if (nodo?.Derecha != null && posiciones.TryGetValue(nodo.Derecha, out var posDer))
             {
                 bool enCamino = EstaEnCaminoActual(nodo, nodo.Derecha, torre.NodoActual);
@@ -776,7 +769,7 @@ public partial class MainWindow : Window, IContextoJuego
             }
         }
 
-        // Dibujar nodos (círculos)
+
         foreach (var (nodo, pos) in posiciones)
         {
             bool esActual = nodo == torre.NodoActual;
@@ -809,7 +802,7 @@ public partial class MainWindow : Window, IContextoJuego
         
         resultado[nodo] = pos;
         
-        // Calcular posiciones para hijos binarios
+
         if (nodo.Izquierda == null && nodo.Derecha == null) return;
         
         double espacioHijoIzq = pos.X - espacioHorizontal / 2.0;
@@ -831,12 +824,11 @@ public partial class MainWindow : Window, IContextoJuego
     {
         if (candidato == null || descendiente == null) return false;
         
-        // Buscar si candidato está en el camino hacia la raíz desde descendiente
+
         var actual = descendiente;
         while (actual != null)
         {
-            // Para encontrar ancestros en un árbol binario, necesitamos una referencia al padre
-            // Como no la tenemos, recorremos desde la raíz
+
             actual = BuscarPadre(candidato, actual);
             if (actual == candidato) return true;
         }
@@ -858,10 +850,10 @@ public partial class MainWindow : Window, IContextoJuego
     {
         if (desde == null || hacia == null || actual == null) return false;
         
-        // Si estamos en un nodo y el destino es uno de sus hijos, no está en camino
+
         if (desde == actual && (actual.Izquierda == hacia || actual.Derecha == hacia)) return false;
         
-        // Está en camino si hacia es actual o es ancestro de actual, y desde es el padre de actual o ancestro de actual
+
         return (hacia == actual || EsAncesor(hacia, actual)) && 
                (BuscarPadre(hacia, actual) == desde || EsAncesor(desde, actual));
     }
@@ -870,7 +862,7 @@ public partial class MainWindow : Window, IContextoJuego
     {
         UpgradeOptionsPanel.Children.Clear();
         
-        // Verificar si hay hijos disponibles
+
         bool tieneHijos = (torre.NodoActual?.Izquierda != null) || (torre.NodoActual?.Derecha != null);
         
         if (!tieneHijos)
@@ -885,7 +877,7 @@ public partial class MainWindow : Window, IContextoJuego
             return;
         }
 
-        // Agregar botones para hijo izquierdo
+
         if (torre.NodoActual?.Izquierda != null)
         {
             var hijo = torre.NodoActual.Izquierda.Dato;
@@ -914,7 +906,7 @@ public partial class MainWindow : Window, IContextoJuego
             UpgradeOptionsPanel.Children.Add(btn);
         }
         
-        // Agregar botones para hijo derecho
+
         if (torre.NodoActual?.Derecha != null)
         {
             var hijo = torre.NodoActual.Derecha.Dato;
@@ -980,7 +972,7 @@ public partial class MainWindow : Window, IContextoJuego
         ActualizarEstadísticas();
     }
 
-    // ===================== DESHACER (PILA LIFO) =====================
+
 
     private void BotónDeshacer_Click(object sender, RoutedEventArgs e)
     {
@@ -1002,7 +994,6 @@ public partial class MainWindow : Window, IContextoJuego
         ActualizarEstadísticas();
     }
 
-    // ===================== CONTEXTO DE JUEGO (PARA DESHACER) =====================
 
     public void EliminarTorreSilenciosamente(Torre torre)
     {
@@ -1013,7 +1004,7 @@ public partial class MainWindow : Window, IContextoJuego
 
     public void AñadirOro(int cantidad) => _oro += cantidad;
 
-    // ===================== OLEADAS =====================
+
 
     private void BotónIniciarOleada_Click(object sender, RoutedEventArgs e)
     {
@@ -1025,7 +1016,6 @@ public partial class MainWindow : Window, IContextoJuego
         }
     }
 
-    // ===================== INTERFAZ / ESTADÍSTICAS =====================
 
     private void ConstruirBotonesDeTorre()
     {
@@ -1097,7 +1087,6 @@ public partial class MainWindow : Window, IContextoJuego
         }
     }
 
-    // ===================== DIBUJADO DEL CAMINO =====================
 
     private void DibujarCamino()
     {
@@ -1149,7 +1138,6 @@ public partial class MainWindow : Window, IContextoJuego
         GameCanvas.Children.Add(fin);
     }
 
-    // ===================== FIN DE PARTIDA =====================
 
     private void VerificarCondiciónDeVictoria()
     {

@@ -3,17 +3,7 @@ using TowerDefenseWPF.Models;
 
 namespace TowerDefenseWPF.GameLogic;
 
-/// <summary>
-/// Construye el ÁRBOL BINARIO de mejoras para cada tipo de torre.
-///
-/// Estructura: ÁRBOL BINARIO (máximo 2 hijos por nodo).
-/// La raíz representa el estado base de la torre. Cada nodo tiene:
-/// - Izquierda: una especialización específica
-/// - Derecha: otra especialización alternativa
-///
-/// El sistema utiliza ArbolBinario<NodoMejora> de las estructuras personalizadas,
-/// sin usar estructuras predefinidas de C#.
-/// </summary>
+
 public static class ArbolMejoras
 {
     public static ArbolBinario<NodoMejora> ConstruirPara(TipoTorre tipo) => tipo switch
@@ -28,7 +18,7 @@ public static class ArbolMejoras
     {
         var arbol = new ArbolBinario<NodoMejora>();
 
-        // Raíz
+
         var raiz = new NodoMejora
         {
             Nombre = "Arquero Base",
@@ -37,7 +27,6 @@ public static class ArbolMejoras
             Orden = 0
         };
 
-        // Nivel 1: Izquierda = Daño (Orden negativo), Derecha = Velocidad (Orden positivo)
         var dmg1 = new NodoMejora
         {
             Nombre = "+Daño",
@@ -60,7 +49,6 @@ public static class ArbolMejoras
             Revertir = t => t.VelocidadDisparo /= 1.5
         };
 
-        // Nivel 2 para rama Daño
         var dmg2a = new NodoMejora
         {
             Nombre = "++Daño",
@@ -83,7 +71,6 @@ public static class ArbolMejoras
             Revertir = t => { t.Daño -= 6; t.Rango -= 25; }
         };
 
-        // Nivel 2 para rama Velocidad
         var spd2a = new NodoMejora
         {
             Nombre = "++Velocidad",
@@ -106,7 +93,6 @@ public static class ArbolMejoras
             Revertir = t => { t.Daño -= 5; t.VelocidadDisparo /= 1.2; }
         };
 
-        // Insertar en orden para que el árbol binario los coloque automáticamente
         arbol.Insertar(raiz);
         arbol.Insertar(dmg1);
         arbol.Insertar(spd1);

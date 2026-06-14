@@ -3,13 +3,7 @@ using TowerDefenseWPF.Models;
 
 namespace TowerDefenseWPF.GameLogic;
 
-/// <summary>
-/// Historial de acciones del jugador.
-///
-/// Estructura clave: Pila&lt;AccionJugador&gt; (LIFO propia).
-/// El botón "Deshacer" siempre revierte la última acción realizada,
-/// que es exactamente la semántica de una Pila: Apilar al hacer, Desapilar al deshacer.
-/// </summary>
+
 public class HistorialAcciones
 {
     private readonly Pila<AccionJugador> _pila = new();

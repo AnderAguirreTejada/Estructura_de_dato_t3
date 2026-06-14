@@ -39,3 +39,28 @@ C:\Users\ander\OneDrive\Documentos\Idea de jueguito\obj\Debug\net8.0-windows\Tow
 C:\Users\ander\OneDrive\Documentos\Idea de jueguito\obj\Debug\net8.0-windows\TowerDefenseWPF.genruntimeconfig.cache
 C:\Users\ander\OneDrive\Documentos\Idea de jueguito\obj\Debug\net8.0-windows\ref\TowerDefenseWPF.dll
 C:\Users\ander\OneDrive\Documentos\Idea de jueguito\obj\Debug\net8.0-windows\TowerDefenseWPF.sourcelink.json
+C:\Users\UCC20412\Documents\pt3\Estructura_de_dato_t3\obj\Debug\net8.0-windows\MainWindow.g.cs
+C:\Users\UCC20412\Documents\pt3\Estructura_de_dato_t3\obj\Debug\net8.0-windows\App.g.cs
+C:\Users\UCC20412\Documents\pt3\Estructura_de_dato_t3\obj\Debug\net8.0-windows\TowerDefenseWPF_Content.g.cs
+C:\Users\UCC20412\Documents\pt3\Estructura_de_dato_t3\obj\Debug\net8.0-windows\TowerDefenseWPF_MarkupCompile.cache
+C:\Users\UCC20412\Documents\pt3\Estructura_de_dato_t3\obj\Debug\net8.0-windows\TowerDefenseWPF_MarkupCompile.lref
+C:\Users\UCC20412\Documents\pt3\Estructura_de_dato_t3\obj\Debug\net8.0-windows\MainWindow.baml
+C:\Users\UCC20412\Documents\pt3\Estructura_de_dato_t3\obj\Debug\net8.0-windows\TowerDefenseWPF.g.resources
+C:\Users\UCC20412\Documents\pt3\Estructura_de_dato_t3\obj\Debug\net8.0-windows\TowerDefenseWPF.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\UCC20412\Documents\pt3\Estructura_de_dato_t3\obj\Debug\net8.0-windows\TowerDefenseWPF.AssemblyInfoInputs.cache
+C:\Users\UCC20412\Documents\pt3\Estructura_de_dato_t3\obj\Debug\net8.0-windows\TowerDefenseWPF.AssemblyInfo.cs
+C:\Users\UCC20412\Documents\pt3\Estructura_de_dato_t3\obj\Debug\net8.0-windows\TowerDefenseWPF.csproj.CoreCompileInputs.cache
+C:\Users\UCC20412\Documents\pt3\Estructura_de_dato_t3\obj\Debug\net8.0-windows\TowerDefenseWPF.sourcelink.json
+C:\Users\UCC20412\Documents\pt3\Estructura_de_dato_t3\obj\Debug\net8.0-windows\refint\TowerDefenseWPF.dll
+C:\Users\UCC20412\Documents\pt3\Estructura_de_dato_t3\obj\Debug\net8.0-windows\TowerDefenseWPF.pdb
+C:\Users\UCC20412\Documents\pt3\Estructura_de_dato_t3\bin\Debug\net8.0-windows\sonidos\Canon.mp3.mpeg
+C:\Users\UCC20412\Documents\pt3\Estructura_de_dato_t3\bin\Debug\net8.0-windows\sonidos\Flecha.mp3.mpeg
+C:\Users\UCC20412\Documents\pt3\Estructura_de_dato_t3\bin\Debug\net8.0-windows\sonidos\Magia.mp3.mpeg
+C:\Users\UCC20412\Documents\pt3\Estructura_de_dato_t3\bin\Debug\net8.0-windows\TowerDefenseWPF.exe
+C:\Users\UCC20412\Documents\pt3\Estructura_de_dato_t3\bin\Debug\net8.0-windows\TowerDefenseWPF.deps.json
+C:\Users\UCC20412\Documents\pt3\Estructura_de_dato_t3\bin\Debug\net8.0-windows\TowerDefenseWPF.runtimeconfig.json
+C:\Users\UCC20412\Documents\pt3\Estructura_de_dato_t3\bin\Debug\net8.0-windows\TowerDefenseWPF.dll
+C:\Users\UCC20412\Documents\pt3\Estructura_de_dato_t3\bin\Debug\net8.0-windows\TowerDefenseWPF.pdb
+C:\Users\UCC20412\Documents\pt3\Estructura_de_dato_t3\obj\Debug\net8.0-windows\TowerDefenseWPF.dll
+C:\Users\UCC20412\Documents\pt3\Estructura_de_dato_t3\obj\Debug\net8.0-windows\TowerDefenseWPF.genruntimeconfig.cache
+C:\Users\UCC20412\Documents\pt3\Estructura_de_dato_t3\obj\Debug\net8.0-windows\ref\TowerDefenseWPF.dll
